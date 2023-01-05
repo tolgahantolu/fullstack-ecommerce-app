@@ -1,6 +1,7 @@
 import { BsSearch } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import { IoMdNotificationsOutline, IoIosLogOut } from "react-icons/io";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -20,9 +21,12 @@ const Navbar = () => {
         <button className="bg-theme-dark-grey text-white text-xl p-3 rounded-full">
           <IoMdNotificationsOutline />
         </button>
-        <button className="bg-theme-dark-grey text-white text-xl p-3 rounded-full">
+        <Link
+          href="/cart"
+          className="bg-theme-dark-grey text-white text-xl p-3 rounded-full"
+        >
           <BiShoppingBag />
-        </button>
+        </Link>
         <button className="bg-theme-dark-grey text-white text-xl p-3 rounded-full">
           <IoIosLogOut />
         </button>
