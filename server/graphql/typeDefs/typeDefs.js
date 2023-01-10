@@ -15,11 +15,36 @@ const typeDefs = `#graphql
 		popular: Boolean
 	}
 
+	type User {
+		name: String!
+		surname: String!
+		email: String!
+		password: String!
+		token: String!
+	}
+
+	input RegisterInput {
+		name: String!
+		surname: String!
+		email: String!
+		password: String!
+	}
+	
+	input LoginInput {
+		email: String!
+		password: String!
+	}
+
 	type Query {
 		getFoods: [Food]
 		getFood(foodId: ID!): Food
-
 		getCategories: [Category]
+		getUser(id: ID!): User
+	}
+
+	type Mutation {
+		registerUser(registerInput: RegisterInput): User
+		loginUser(loginInput: LoginInput): User
 	}
 `;
 
