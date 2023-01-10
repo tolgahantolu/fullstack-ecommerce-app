@@ -20,7 +20,7 @@ const typeDefs = `#graphql
 		surname: String!
 		email: String!
 		password: String!
-		token: String!
+		token: String
 	}
 
 	input RegisterInput {
@@ -43,9 +43,9 @@ const typeDefs = `#graphql
 	}
 
 	type Mutation {
-		registerUser(registerInput: RegisterInput): User
+	    registerUser(registerInput: RegisterInput): User
 		loginUser(loginInput: LoginInput): User
-	}
+  	}
 `;
 
 export default typeDefs;

@@ -48,7 +48,7 @@ const resolvers = {
       _,
       { registerInput: { name, surname, email, password } }
     ) => {
-      const oldUser = userSchema.findOne({ email });
+      const oldUser = await userSchema.findOne({ email });
 
       if (oldUser) {
         throw new Error("Email is already in use: " + email);
@@ -57,8 +57,8 @@ const resolvers = {
       const encryptedPassword = await bcrypt.hash(password, 10);
 
       const newUser = new userSchema({
-        name,
-        surname,
+        name: name,
+        surname: surname,
         email: email.toLowerCase(),
         password: encryptedPassword,
       });
@@ -78,12 +78,37 @@ const resolvers = {
       newUser.token = token;
 
       // !SAVE
-      const res = newUser.save();
+      const res = await newUser.save();
 
       return {
         id: res.id,
         ...res._doc,
       };
+    },
+    loginUser: async (_, { loginInput: { email, password } }) => {
+      const user = await userSchema.findOne({ email });
+
+      if (user && (await bcrypt.compare(password, user.password))) {
+        const token = jwt.sign(
+          {
+            user_id: user._id,
+            email,
+          },
+          "LOGIN USER",
+          {
+            algorithm: "HS512",
+            expiresIn: "10h",
+          }
+        );
+        user.token = token;
+
+        return {
+          id: user.id,
+          ...user._doc,
+        };
+      } else {
+        throw new Error("Something went wrong! Please check one more time...");
+      }
     },
   },
 };
