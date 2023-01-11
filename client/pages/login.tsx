@@ -10,24 +10,24 @@ const login = () => {
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
-              className="flex items-center gap-x-1 text-sm"
+              className="flex items-center gap-x-1 text-sm capitalize"
             >
-              <MdAlternateEmail /> Email
+              <MdAlternateEmail /> email
             </label>
             <input
               type="text"
               id="email"
               name="email"
-              placeholder="Type your username"
+              placeholder="Type your email"
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
             />
           </div>
           <div className="flex flex-col gap-1">
             <label
               htmlFor="password"
-              className="flex items-center gap-x-1 text-sm"
+              className="flex items-center gap-x-1 text-sm capitalize"
             >
-              <MdLockOutline /> Password
+              <MdLockOutline /> password
             </label>
             <input
               type="password"
