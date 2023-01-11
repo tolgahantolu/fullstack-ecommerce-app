@@ -1,9 +1,26 @@
 import Link from "next/link";
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER } from "../graphql/mutation";
+
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 
 const signUp = () => {
+  const [user, setUser] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  });
+  const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER);
+
+  const handleChange = (e: any) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  console.log(user);
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
@@ -22,6 +39,8 @@ const signUp = () => {
               name="name"
               placeholder="Type your name"
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.name}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -37,6 +56,8 @@ const signUp = () => {
               name="surname"
               placeholder="Type your surname"
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.surname}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -52,6 +73,8 @@ const signUp = () => {
               name="email"
               placeholder="Type your email"
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.email}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -67,11 +90,14 @@ const signUp = () => {
               name="password"
               placeholder="Type your password"
               className="w-full outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.password}
+              onChange={handleChange}
             />
           </div>
           <button
             type="button"
             className="text-lg text-white py-3 px-2 font-semibold uppercase rounded-full bg-theme-green"
+            onClick={() => registerUser({ variables: { registerInput: user } })}
           >
             sign up
           </button>
