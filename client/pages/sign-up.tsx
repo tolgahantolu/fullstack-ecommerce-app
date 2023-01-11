@@ -6,8 +6,11 @@ import { REGISTER_USER } from "../graphql/mutation";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
+import { useRouter } from "next/router";
+import Loader from "../components/Loader";
 
 const signUp = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     name: "",
     surname: "",
@@ -20,7 +23,19 @@ const signUp = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  console.log(user);
+  const handleRegister = () => {
+    registerUser({ variables: { registerInput: user } });
+
+    if (!error) {
+      router.push("/");
+    } else {
+      throw new Error(error.message);
+      //  console.log(error.message);
+    }
+  };
+
+  if (loading) return <Loader />;
+  if (error) return <p>Error : {error.message}</p>;
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
@@ -97,7 +112,7 @@ const signUp = () => {
           <button
             type="button"
             className="text-lg text-white py-3 px-2 font-semibold uppercase rounded-full bg-theme-green"
-            onClick={() => registerUser({ variables: { registerInput: user } })}
+            onClick={handleRegister}
           >
             sign up
           </button>

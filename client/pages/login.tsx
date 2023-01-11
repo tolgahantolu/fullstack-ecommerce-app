@@ -1,7 +1,30 @@
+import { useMutation } from "@apollo/client";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
+import Loader from "../components/Loader";
+import { LOGIN_USER } from "../graphql/mutation";
 
 const login = () => {
+  const router = useRouter();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [loginUser, { data, loading, error }] = useMutation(LOGIN_USER);
+
+  const handleChange = (e: any) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = () => {
+    loginUser({ variables: { loginInput: user } });
+  };
+
+  if (loading) return <Loader />;
+  if (error) return <p>Error : {error.message}</p>;
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
@@ -20,6 +43,8 @@ const login = () => {
               name="email"
               placeholder="Type your email"
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.email}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -35,11 +60,14 @@ const login = () => {
               name="password"
               placeholder="Type your password"
               className="w-full outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
+              value={user.password}
+              onChange={handleChange}
             />
           </div>
           <button
             type="button"
             className="text-lg text-white py-3 px-2 font-semibold uppercase rounded-full bg-theme-green"
+            onClick={handleLogin}
           >
             login
           </button>
