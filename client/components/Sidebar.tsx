@@ -4,8 +4,9 @@ import { BsTruck, BsGear } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
-import { Key, useRef, useState } from "react";
+import { Key } from "react";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const MENU_LIST = [
@@ -37,17 +38,33 @@ const Sidebar = () => {
   ];
   const pathname = useRouter().pathname;
 
+  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+
   return (
     <section className="w-[200px] min-w-[200px] h-full flex flex-col justify-start items-center gap-y-10 pb-10">
       <div className="w-full flex flex-col items-center gap-y-1 justify-center">
         <Image
+          src={`${checkUser ? "/profile.png" : "/avatar.svg"}`}
+          width={100}
+          height={100}
+          alt="profile"
+          className="object-cover rounded-full object-top"
+        />
+
+        <h2 className="capitalize text-white text-lg font-medium">
+          {checkUser ? "tolgahan tolu" : "please login"}
+        </h2>
+        {/*<Image
           src="/profile.png"
           width={100}
           height={100}
           alt="profile"
           className="object-cover rounded-full object-top"
         />
-        <h2 className="text-white text-lg font-medium">Tolgahan Tolu</h2>
+
+        <h2 className="capitalize text-white text-lg font-medium">
+          tolgahan tolu
+        </h2>*/}
       </div>
 
       {/* sidebar list */}

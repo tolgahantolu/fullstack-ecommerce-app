@@ -3,8 +3,17 @@ import { BsSearch } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
 import { IoMdNotificationsOutline, IoIosLogOut } from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { authUser } from "../store/authSlice";
 
 const Navbar = () => {
+  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(authUser({ user: false }));
+  };
+
   return (
     <nav className="w-full h-20 flex items-center">
       <form className="flex justify-start ml-80 relative">
@@ -32,8 +41,11 @@ const Navbar = () => {
           href="/login"
           className="bg-theme-dark-grey text-white text-xl p-3 rounded-full"
         >
-          <AiOutlineUser />
-          {/*<IoIosLogOut />*/}
+          {checkUser ? (
+            <IoIosLogOut onClick={handleLogout} />
+          ) : (
+            <AiOutlineUser />
+          )}
         </Link>
       </div>
     </nav>

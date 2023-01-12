@@ -3,11 +3,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import { LOGIN_USER } from "../graphql/mutation";
+import { authUser } from "../store/authSlice";
 
 const login = () => {
+  const dispatch = useDispatch();
+  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  console.log(checkUser);
   const router = useRouter();
+
+  if (checkUser) {
+    router.push("/");
+  }
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -19,8 +29,10 @@ const login = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = () => {
-    loginUser({ variables: { loginInput: user } });
+  const handleLogin = async () => {
+    await loginUser({ variables: { loginInput: user } });
+
+    dispatch(authUser({ user: true }));
   };
 
   if (loading) return <Loader />;
