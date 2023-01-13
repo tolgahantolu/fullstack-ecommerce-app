@@ -39,20 +39,27 @@ const Sidebar = () => {
   const pathname = useRouter().pathname;
 
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const checkEmail = useSelector((state: any | any[]) => state.auth.email);
 
   return (
     <section className="w-[200px] min-w-[200px] h-full flex flex-col justify-start items-center gap-y-10 pb-10">
       <div className="w-full flex flex-col items-center gap-y-1 justify-center">
         <Image
-          src={`${checkUser ? "/profile.png" : "/avatar.svg"}`}
+          src={`${checkUser && checkEmail ? "/profile.png" : "/avatar.svg"}`}
           width={100}
           height={100}
           alt="profile"
           className="object-cover rounded-full object-top"
         />
 
-        <h2 className="capitalize text-white text-lg font-medium">
-          {checkUser ? "tolgahan tolu" : "please login"}
+        <h2 className="text-white break-all text-center px-3 font-medium">
+          {checkUser && checkEmail ? (
+            checkEmail
+          ) : (
+            <Link href="/login" className="capitalize underline">
+              please login
+            </Link>
+          )}
         </h2>
         {/*<Image
           src="/profile.png"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "../graphql/mutation";
 
@@ -8,9 +8,20 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useRouter } from "next/router";
 import Loader from "../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { authUser } from "../store/authSlice";
 
 const signUp = () => {
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const userEmail = emailInputRef.current?.value;
+  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const dispatch = useDispatch();
   const router = useRouter();
+
+  if (checkUser) {
+    router.push("/");
+  }
+
   const [user, setUser] = useState({
     name: "",
     surname: "",
@@ -26,12 +37,7 @@ const signUp = () => {
   const handleRegister = () => {
     registerUser({ variables: { registerInput: user } });
 
-    if (!error) {
-      router.push("/");
-    } else {
-      throw new Error(error.message);
-      //  console.log(error.message);
-    }
+    dispatch(authUser({ user: true, email: userEmail }));
   };
 
   if (loading) return <Loader />;
@@ -90,6 +96,7 @@ const signUp = () => {
               className="outline-none border-b border-[#AFAFAF] placeholder:text-[#AFAFAF] text-[15px] pl-1 pr-2 pt-1 pb-2"
               value={user.email}
               onChange={handleChange}
+              ref={emailInputRef}
             />
           </div>
           <div className="flex flex-col gap-1">
