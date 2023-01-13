@@ -13,6 +13,7 @@ const typeDefs = `#graphql
 		id: ID!
 		name: String!
 		popular: Boolean
+		image: String!
 	}
 
 	type User {

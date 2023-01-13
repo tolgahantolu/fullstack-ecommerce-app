@@ -11,6 +11,11 @@ const categorySchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  image: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   date: {
     type: Date,
     default: new Date(),

@@ -20,6 +20,7 @@ export const GET_CATEGORIES = gql`
       id
       name
       popular
+      image
     }
   }
 `;

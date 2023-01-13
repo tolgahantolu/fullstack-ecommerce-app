@@ -6,9 +6,10 @@ const Category: React.FC<{
   id: Object;
   name: String;
   popular: Boolean;
+  image: String;
   paddingBottom: Boolean;
   index: Key;
-}> = ({ id, name, popular, paddingBottom, index }) => {
+}> = ({ id, name, popular, image, paddingBottom, index }) => {
   return (
     <div
       key={index}
@@ -19,7 +20,7 @@ const Category: React.FC<{
         className="flex flex-col items-center justify-center"
       >
         <Image
-          src="/category/cake.png"
+          src={image as string}
           alt="category"
           width={75}
           height={75}

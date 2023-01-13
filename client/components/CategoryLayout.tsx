@@ -18,7 +18,12 @@ const CategoryLayout = () => {
       <div className="grid grid-cols-8 gap-x-6 gap-y-8 mr-10">
         {data?.getCategories?.map(
           (
-            category: { id: Object; name: String; popular: Boolean },
+            category: {
+              id: Object;
+              name: String;
+              popular: Boolean;
+              image: String;
+            },
             i: Key
           ) => (
             <Category {...category} index={i} paddingBottom={true} />
