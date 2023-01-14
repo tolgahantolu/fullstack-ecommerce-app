@@ -11,17 +11,6 @@ const Cart = () => {
   );
   const dispatch = useDispatch();
 
-  const cartProducts = productItems.map((products: any) => products);
-
-  let newSingleProductData: any;
-  const newProductData = () => {
-    for (let product of cartProducts) {
-      newSingleProductData = product;
-    }
-  };
-  newProductData();
-  console.log(newSingleProductData);
-
   const handlerAddItem = (id: String, price: Number): any => {
     dispatch(
       addItemToCart({
@@ -51,7 +40,7 @@ const Cart = () => {
           {productItems.map((product: any | any[]) => (
             <div
               key={product.id}
-              className="bg-theme-light-grey p-3 rounded-[30px] flex items-center"
+              className="bg-theme-light-grey p-3 rounded-[30px] flex items-center gap-3"
             >
               <Image
                 src="/food/salad2.png"
@@ -60,13 +49,13 @@ const Cart = () => {
                 alt="cart product"
                 className="object-cover object-center drop-shadow"
               />
-              <div className="flex flex-col gap-1 items-start ml-2">
+              <div className="flex-1 flex flex-col gap-1 items-start">
                 <h3 className="capitalize">{product.title}</h3>
                 <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
                   220g
                 </p>
               </div>
-              <div className="ml-10 flex-1 flex flex-row items-center justify-between">
+              <div className="flex-1 flex flex-row items-center justify-between">
                 <div className="flex items-center gap-x-[2px]">
                   <button
                     type="button"
@@ -89,12 +78,6 @@ const Cart = () => {
                   </button>
                 </div>
                 <h2 className="text-[40px] font-bold">${product.totalPrice}</h2>
-                <button
-                  type="button"
-                  className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-                >
-                  <FaTimes />
-                </button>
               </div>
             </div>
           ))}
