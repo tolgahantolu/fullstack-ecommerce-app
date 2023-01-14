@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../store/authSlice";
 
 const Navbar = () => {
+  const cartCounter = useSelector((state: any | any[]) => state.cart.counter);
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(authUser({ user: false }));
+    dispatch(authUser({ user: false, email: null }));
   };
 
   return (
@@ -33,9 +34,12 @@ const Navbar = () => {
         </button>
         <Link
           href="/cart"
-          className="bg-theme-dark-grey text-white text-xl p-3 rounded-full"
+          className="bg-theme-dark-grey text-white text-xl p-3 rounded-full relative"
         >
           <BiShoppingBag />
+          <span className="flex justify-center items-center font-medium text-sm w-6 h-6 rounded-full bg-theme-light-orange absolute -bottom-2 -right-1">
+            {cartCounter}
+          </span>
         </Link>
         <Link
           href="/login"

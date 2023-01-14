@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { Key } from "react";
+import React, { FormEvent, Key, useRef, useState } from "react";
 import { FiPlus } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../store/cartSlice";
 
 const Food: React.FC<{
   id: Object;
@@ -13,6 +15,37 @@ const Food: React.FC<{
   ingredients: Array<string>;
   index: Key;
 }> = ({ id, title, desc, price, kit, category, index, ingredients }) => {
+  const amountInputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+  const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
+
+  const handlerSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    const enteredAmount: String | any = amountInputRef.current?.value;
+    const enteredAmountNumber: Number = +enteredAmount;
+
+    if (
+      enteredAmount?.trim().length === 0 ||
+      enteredAmountNumber < 1 ||
+      enteredAmountNumber > 5
+    ) {
+      setAmountIsValid(false);
+      return;
+    } else {
+      if (amountIsValid !== true) setAmountIsValid(true);
+    }
+
+    dispatch(
+      addItemToCart({
+        id,
+        title,
+        price,
+        counter: enteredAmountNumber,
+        amount: enteredAmountNumber,
+      })
+    );
+  };
   return (
     <div
       key={index}
@@ -44,20 +77,28 @@ const Food: React.FC<{
           </Link>
           <div className="mt-3 flex flex-row justify-between items-center">
             <p className="font-bold text-3xl leading-none">{`$${price}`}</p>
-            <form className="flex items-center gap-x-2">
+            <form
+              onSubmit={handlerSubmit}
+              className="flex items-center gap-x-2"
+            >
               <input
                 type="text"
-                placeholder="1"
                 className="border-none outline-none text-center text-xs w-14 h-6 px-4 bg-theme-dark-black rounded-full"
+                ref={amountInputRef}
               />
               <button
-                type="button"
+                type="submit"
                 className="border-none outline-none bg-theme-green rounded-xl text-2xl p-1 font-bold"
               >
                 <FiPlus />
               </button>
             </form>
           </div>
+          {!amountIsValid && (
+            <p className="mt-4 text-left text-xs font-medium text-theme-dark-orange">
+              Please enter a amount (1-5).
+            </p>
+          )}
         </div>
         <Image
           src="/food/salad2.png"

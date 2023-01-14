@@ -1,409 +1,101 @@
 import Image from "next/image";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, removeItemFromCart } from "../store/cartSlice";
 
 const Cart = () => {
+  const productItems = useSelector((state: any | any[]) => state.cart.products);
+  const totalAmount = useSelector(
+    (state: any | any[]) => state.cart.totalAmount
+  );
+  const dispatch = useDispatch();
+
+  const cartProducts = productItems.map((products: any) => products);
+
+  let newSingleProductData: any;
+  const newProductData = () => {
+    for (let product of cartProducts) {
+      newSingleProductData = product;
+    }
+  };
+  newProductData();
+  console.log(newSingleProductData);
+
+  const handlerAddItem = () => {
+    dispatch(
+      addItemToCart({
+        id: newSingleProductData.id,
+        title: newSingleProductData.title,
+        price: newSingleProductData.price,
+        counter: 1,
+      })
+    );
+  };
+
+  const handlerRemoveItem = () => {
+    dispatch(
+      removeItemFromCart({
+        id: newSingleProductData.id,
+        price: newSingleProductData.price,
+        counter: 1,
+      })
+    );
+  };
+
   return (
     <div className="flex gap-x-8">
       <div className="flex-1">
         <h1 className="text-3xl capitalize font-medium">Shopping Cart</h1>
         <div className="mt-5 flex flex-col gap-y-5 border-b-2 border-theme-dark-grey pb-10 overflow-y-auto h-[540px] pr-5">
           {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
+          {productItems.map((product: any | any[]) => (
+            <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
+              <Image
+                src="/food/salad2.png"
+                width={75}
+                height={75}
+                alt="cart product"
+                className="object-cover object-center drop-shadow"
+              />
+              <div className="flex flex-col gap-1 items-start ml-2">
+                <h3 className="capitalize">{product.title}</h3>
+                <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
+                  220g
+                </p>
+              </div>
+              <div className="ml-10 flex-1 flex flex-row items-center justify-between">
+                <div className="flex items-center gap-x-[2px]">
+                  <button
+                    type="button"
+                    className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
+                    onClick={handlerAddItem}
+                  >
+                    <AiOutlinePlus />
+                  </button>
+                  <input
+                    type="text"
+                    value={product.quantity}
+                    className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
+                  />
+                  <button
+                    type="button"
+                    className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
+                    onClick={handlerRemoveItem}
+                  >
+                    <AiOutlineMinus />
+                  </button>
+                </div>
+                <h2 className="text-[40px] font-bold">${product.totalPrice}</h2>
                 <button
                   type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
+                  className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
                 >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
+                  <FaTimes />
                 </button>
               </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
             </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-sm"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-xs"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-xs"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
-          {/* cart product */}
-          <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
-            <Image
-              src="/food/salad2.png"
-              width={75}
-              height={75}
-              alt="cart product"
-              className="object-cover object-center drop-shadow"
-            />
-            <div className="flex flex-col gap-1 items-start ml-2">
-              <h3 className="capitalize">vegetable salad</h3>
-              <p className="bg-theme-light-black px-2 py-[2px] text-[10px] rounded-lg">
-                220g
-              </p>
-            </div>
-            <div className="ml-10 flex-1 flex flex-row items-center justify-between">
-              <div className="flex items-center gap-x-[2px]">
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlinePlus />
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="max-w-[40px] bg-theme-light-grey outline-none border-none text-center text-xs"
-                />
-                <button
-                  type="button"
-                  className="bg-theme-light-black text-white outline-none text-xs border-none rounded-lg p-1"
-                >
-                  <AiOutlineMinus />
-                </button>
-              </div>
-              <h2 className="text-[40px] font-bold">$52</h2>
-              <button
-                type="button"
-                className="border-none outline-none bg-red-600 text-sm p-2 rounded-full"
-              >
-                <FaTimes />
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* cart summary */}
@@ -416,7 +108,9 @@ const Cart = () => {
           </p>
           <p className="flex items-center gap-x-2">
             Cart Summary:
-            <span className="text-theme-green font-bold text-2xl">$237</span>
+            <span className="text-theme-green font-bold text-2xl">
+              ${totalAmount}
+            </span>
           </p>
         </div>
       </div>
