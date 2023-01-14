@@ -58,7 +58,7 @@ const cartSlice = createSlice({
           0
         );
 
-      console.log(existingProduct);
+      console.log(current(state.products));
     },
     removeItemFromCart(state, action) {
       state.counter = state.counter - action.payload.counter;

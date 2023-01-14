@@ -45,9 +45,9 @@ const Sidebar = () => {
     <section className="w-[200px] min-w-[200px] h-full flex flex-col justify-start items-center gap-y-10 pb-10">
       <div className="w-full flex flex-col items-center gap-y-1 justify-center">
         <Image
-          src={`${checkUser && checkEmail ? "/profile.png" : "/avatar.svg"}`}
-          width={100}
-          height={100}
+          src={`${checkUser && checkEmail ? "/profile.svg" : "/avatar.svg"}`}
+          width={80}
+          height={80}
           alt="profile"
           className="object-cover rounded-full object-top"
         />

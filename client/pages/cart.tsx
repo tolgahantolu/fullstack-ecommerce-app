@@ -22,22 +22,21 @@ const Cart = () => {
   newProductData();
   console.log(newSingleProductData);
 
-  const handlerAddItem = () => {
+  const handlerAddItem = (id: String, price: Number): any => {
     dispatch(
       addItemToCart({
-        id: newSingleProductData.id,
-        title: newSingleProductData.title,
-        price: newSingleProductData.price,
+        id,
+        price,
         counter: 1,
       })
     );
   };
 
-  const handlerRemoveItem = () => {
+  const handlerRemoveItem = (id: String, price: Number): any => {
     dispatch(
       removeItemFromCart({
-        id: newSingleProductData.id,
-        price: newSingleProductData.price,
+        id,
+        price,
         counter: 1,
       })
     );
@@ -50,7 +49,10 @@ const Cart = () => {
         <div className="mt-5 flex flex-col gap-y-5 border-b-2 border-theme-dark-grey pb-10 overflow-y-auto h-[540px] pr-5">
           {/* cart product */}
           {productItems.map((product: any | any[]) => (
-            <div className="bg-theme-light-grey p-3 rounded-[30px] flex items-center">
+            <div
+              key={product.id}
+              className="bg-theme-light-grey p-3 rounded-[30px] flex items-center"
+            >
               <Image
                 src="/food/salad2.png"
                 width={75}
@@ -69,7 +71,7 @@ const Cart = () => {
                   <button
                     type="button"
                     className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                    onClick={handlerAddItem}
+                    onClick={() => handlerAddItem(product.id, product.price)}
                   >
                     <AiOutlinePlus />
                   </button>
@@ -81,7 +83,7 @@ const Cart = () => {
                   <button
                     type="button"
                     className="bg-theme-light-black text-white outline-none text-sm border-none rounded-lg p-1"
-                    onClick={handlerRemoveItem}
+                    onClick={() => handlerRemoveItem(product.id, product.price)}
                   >
                     <AiOutlineMinus />
                   </button>
