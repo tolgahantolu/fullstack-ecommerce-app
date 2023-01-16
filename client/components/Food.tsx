@@ -54,7 +54,7 @@ const Food: React.FC<{
       <div className="flex items-center gap-x-1 min-h-[180px] min-w-full pl-4 pr-2 py-2">
         <div className="flex flex-col">
           <Link href={`/food/${id}`}>
-            <h2 className="capitalize text-lg mb-1">{title}</h2>
+            <h2 className="capitalize text-lg mb-1 font-medium">{title}</h2>
             <div className="flex flex-row flex-wrap">
               {ingredients.length > 7
                 ? ingredients.slice(0, 7).map((el, i) => (

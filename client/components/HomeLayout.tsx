@@ -35,6 +35,7 @@ const HomeLayout = () => {
               category: {
                 id: Object;
                 name: String;
+                image: String;
                 popular: Boolean;
               },
               i: Key
