@@ -13,6 +13,7 @@ import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
+  const [searchbarIsValid, setSearchbarIsValid] = useState<Boolean>(false);
   const { data, loading, error } = useQuery(GET_FOODS);
   const cartCounter = useSelector((state: any | any[]) => state.cart.counter);
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
@@ -40,13 +41,14 @@ const Navbar = () => {
           placeholder="Search..."
           className="bg-theme-dark-black w-[350px] h-10 text-sm rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2"
           onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setSearchbarIsValid(true)}
         />
         <span className="text-white text-lg absolute top-1/2 -translate-y-1/2 right-3">
           <BsSearch />
         </span>
 
-        {query.length > 2 && (
-          <div className="text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
+        {searchbarIsValid && query.length > 2 && (
+          <div className="search border border-theme-light-grey text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
             {/* product */}
             {data?.getFoods
               ?.filter((food: Food) => food.title.toLowerCase().includes(query))
@@ -55,6 +57,7 @@ const Navbar = () => {
                   key={i}
                   href={`/food/${food.id}`}
                   className="bg-theme-light-grey p-3 rounded-[30px] flex items-center gap-3 mx-3"
+                  onClick={() => setSearchbarIsValid(false)}
                 >
                   <Image
                     src="/food/salad2.png"

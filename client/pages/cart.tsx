@@ -2,6 +2,7 @@ import Image from "next/image";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import BackButton from "../components/BackButton";
 import { addItemToCart, removeItemFromCart } from "../store/cartSlice";
 
 const Cart = () => {
@@ -37,6 +38,14 @@ const Cart = () => {
         <h1 className="text-3xl capitalize font-medium">Shopping Cart</h1>
         <div className="mt-5 flex flex-col gap-y-5 border-b-2 border-theme-dark-grey pb-10 overflow-y-auto h-[540px] pr-5">
           {/* cart product */}
+          {productItems.length === 0 && (
+            <div className="flex flex-col w-full h-full justify-between items-start gap-10">
+              <p className="capitalize text-[#b2afaf] text-lg">
+                your cart is empty...
+              </p>
+              <BackButton />
+            </div>
+          )}
           {productItems.map((product: any | any[]) => (
             <div
               key={product.id}

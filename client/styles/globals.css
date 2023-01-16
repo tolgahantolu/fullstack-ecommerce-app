@@ -57,3 +57,31 @@
     transform: rotate(1turn);
   }
 }
+
+/* Search bar animation */
+.search {
+  -webkit-animation: slide-top 0.5s ease;
+  animation: slide-top 0.5s ease;
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}

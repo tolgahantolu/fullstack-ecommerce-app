@@ -151,6 +151,7 @@ const HomeLayout = () => {
             {foodsData?.getFoods?.map(
               (
                 food: {
+                  id: Object;
                   title: String;
                   desc: String;
                   price: Number;
@@ -159,7 +160,7 @@ const HomeLayout = () => {
                 },
                 i: Key
               ) => (
-                <>{food.kit && <PromotionalKit {...food} key={i} />}</>
+                <>{food.kit && <PromotionalKit {...food} index={i} />}</>
               )
             )}
           </div>
