@@ -22,6 +22,16 @@ const Navbar = () => {
     dispatch(authUser({ user: false, email: null }));
   };
 
+  interface Food {
+    id: Object;
+    title: String;
+    desc: String;
+    price: Number;
+    kit: Boolean;
+    category: String;
+    ingredients: Array<string>;
+  }
+
   return (
     <nav className="w-full h-20 flex items-center">
       <form className="flex justify-start ml-80 relative">
@@ -38,19 +48,9 @@ const Navbar = () => {
         {query.length > 2 && (
           <div className="text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
             {/* product */}
-            {data?.getFoods?.map(
-              (
-                food: {
-                  id: Object;
-                  title: String;
-                  desc: String;
-                  price: Number;
-                  kit: Boolean;
-                  category: String;
-                  ingredients: Array<string>;
-                },
-                i: Key
-              ) => (
+            {data?.getFoods
+              ?.filter((food: Food) => food.title.toLowerCase().includes(query))
+              .map((food: Food, i: Key) => (
                 <Link
                   key={i}
                   href={`/food/${food.id}`}
@@ -92,8 +92,7 @@ const Navbar = () => {
                     {`$${food.price}`}
                   </h2>
                 </Link>
-              )
-            )}
+              ))}
           </div>
         )}
       </form>
