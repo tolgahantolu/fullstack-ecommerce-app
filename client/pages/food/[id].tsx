@@ -1,4 +1,4 @@
-import React, { Key } from "react";
+import React, { FormEvent, Key, useRef, useState } from "react";
 import Image from "next/image";
 import BackButton from "../../components/BackButton";
 import { useRouter } from "next/router";
@@ -7,14 +7,47 @@ import { GET_FOOD } from "../../graphql/query";
 import { FiPlus } from "react-icons/fi";
 import { BsFillStarFill } from "react-icons/bs";
 import Loader from "../../components/Loader";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../store/cartSlice";
 
 const Product = () => {
   const { id } = useRouter().query;
+  const amountInputRef = useRef<HTMLInputElement>(null);
+  const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
+  const dispatch = useDispatch();
 
   const { loading, error, data } = useQuery(GET_FOOD, {
     variables: { foodId: id },
     pollInterval: 500,
   });
+
+  const handlerSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    const enteredAmount: String | any = amountInputRef.current?.value;
+    const enteredAmountNumber: Number = +enteredAmount;
+
+    if (
+      enteredAmount?.trim().length === 0 ||
+      enteredAmountNumber < 1 ||
+      enteredAmountNumber > 5
+    ) {
+      setAmountIsValid(false);
+      return;
+    } else {
+      if (amountIsValid !== true) setAmountIsValid(true);
+    }
+
+    dispatch(
+      addItemToCart({
+        id: data?.getFood?.id,
+        title: data?.getFood?.title,
+        price: data?.getFood?.price,
+        counter: enteredAmountNumber,
+        amount: enteredAmountNumber,
+      })
+    );
+  };
 
   if (loading) return <Loader />;
   return (
@@ -53,19 +86,27 @@ const Product = () => {
           <p className="text-5xl font-bold">${data?.getFood?.price}</p>
 
           <div>
-            <form className="flex items-center gap-x-2">
+            <form
+              onSubmit={handlerSubmit}
+              className="flex items-center gap-x-2"
+            >
               <input
                 type="text"
-                placeholder="1"
                 className="border-none outline-none text-center w-36 h-10 px-4 bg-theme-dark-grey rounded-xl"
+                ref={amountInputRef}
               />
               <button
-                type="button"
+                type="submit"
                 className="border-none outline-none bg-theme-green text-2xl p-2 rounded-xl font-bold"
               >
                 <FiPlus />
               </button>
             </form>
+            {!amountIsValid && (
+              <p className="mt-4 text-left font-medium text-theme-dark-orange">
+                Please enter a amount (1-5).
+              </p>
+            )}
           </div>
         </div>
         <Image
