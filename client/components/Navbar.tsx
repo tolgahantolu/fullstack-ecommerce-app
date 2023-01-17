@@ -2,7 +2,11 @@ import { Key, useRef } from "react";
 import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
-import { IoMdNotificationsOutline, IoIosLogOut } from "react-icons/io";
+import {
+  IoMdNotificationsOutline,
+  IoIosLogOut,
+  IoMdClose,
+} from "react-icons/io";
 import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../store/authSlice";
@@ -13,7 +17,6 @@ import { useQuery } from "@apollo/client";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
-  const [searchbarIsValid, setSearchbarIsValid] = useState<Boolean>(false);
   const { data, loading, error } = useQuery(GET_FOODS);
   const cartCounter = useSelector((state: any | any[]) => state.cart.counter);
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
@@ -38,16 +41,24 @@ const Navbar = () => {
       <form className="flex justify-start ml-80 relative">
         <input
           type="text"
+          value={query}
           placeholder="Search..."
           className="bg-theme-dark-black w-[350px] h-10 text-sm rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2"
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setSearchbarIsValid(true)}
         />
-        <span className="text-white text-lg absolute top-1/2 -translate-y-1/2 right-3">
-          <BsSearch />
+        <span className="text-white absolute top-1/2 -translate-y-1/2 right-3">
+          {query ? (
+            <IoMdClose
+              size={25}
+              className="cursor-pointer"
+              onClick={() => setQuery("")}
+            />
+          ) : (
+            <BsSearch size={20} />
+          )}
         </span>
 
-        {searchbarIsValid && query.length > 2 && (
+        {query.length > 2 && (
           <div className="search border border-theme-light-grey text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
             {/* product */}
             {data?.getFoods
@@ -57,7 +68,7 @@ const Navbar = () => {
                   key={i}
                   href={`/food/${food.id}`}
                   className="bg-theme-light-grey p-3 rounded-[30px] flex items-center gap-3 mx-3"
-                  onClick={() => setSearchbarIsValid(false)}
+                  onClick={() => setQuery("")}
                 >
                   <Image
                     src="/food/salad2.png"
