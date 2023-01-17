@@ -3,20 +3,26 @@ import authSlice from "./authSlice";
 import cartSlice from "./cartSlice";
 
 import storage from "redux-persist/lib/storage";
+import sessionStorage from "redux-persist/lib/storage/session";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 
-const persistConfig = {
+const rootPersistConfig = {
   key: "root",
   storage,
 };
 
+const authPersistConfig = {
+  key: "auth",
+  storage: sessionStorage,
+};
+
 const rootReducer = combineReducers({
-  auth: authSlice,
+  auth: persistReducer(authPersistConfig, authSlice),
   cart: cartSlice,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
