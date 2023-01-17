@@ -4,7 +4,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "../components/Layout";
 
 import { Provider } from "react-redux";
-import store from "../store";
+import { store, persistor } from "../store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -15,9 +16,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <PersistGate loading={null} persistor={persistor}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PersistGate>
       </Provider>
     </ApolloProvider>
   );
