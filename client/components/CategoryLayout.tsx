@@ -27,24 +27,6 @@ const CategoryLayout = () => {
             i: Key
           ) => (
             <Category {...category} index={i} paddingBottom={true} />
-            //<div
-            //  key={i}
-            //  className="w-full bg-theme-dark-grey rounded-[30px] transition duration-750 hover:bg-theme-light-grey"
-            //>
-            //  <Link
-            //    href="/category/pizzas"
-            //    className="flex flex-col items-center justify-center"
-            //  >
-            //    <Image
-            //      src="/category/pizza2.png"
-            //      alt="category"
-            //      width={100}
-            //      height={100}
-            //      className="py-2"
-            //    />
-            //    <p className="capitalize pb-2">{category.name}</p>
-            //  </Link>
-            //</div>
           )
         )}
       </div>

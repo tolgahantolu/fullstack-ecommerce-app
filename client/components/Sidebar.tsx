@@ -61,17 +61,6 @@ const Sidebar = () => {
             </Link>
           )}
         </h2>
-        {/*<Image
-          src="/profile.png"
-          width={100}
-          height={100}
-          alt="profile"
-          className="object-cover rounded-full object-top"
-        />
-
-        <h2 className="capitalize text-white text-lg font-medium">
-          tolgahan tolu
-        </h2>*/}
       </div>
 
       {/* sidebar list */}
@@ -99,62 +88,6 @@ const Sidebar = () => {
             </li>
           )
         )}
-        {/*<li>
-          <Link
-            href="/"
-            className="flex items-center gap-x-8 text-base text-white pr-6 rounded-full bg-theme-light-orange"
-          >
-            <span className="p-4 rounded-full bg-theme-dark-orange">
-              <AiOutlineHome />
-            </span>
-            <p>Home</p>
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="/category"
-            className="flex items-center gap-x-8 text-base text-white pr-6 rounded-full"
-          >
-            <span className="p-4 rounded-full bg-theme-dark-grey">
-              <BiCategory />
-            </span>
-            <p>Category</p>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/"
-            className="flex items-center gap-x-8 text-base text-white pr-6 rounded-full"
-          >
-            <span className="p-4 rounded-full bg-theme-dark-grey">
-              <IoLocationOutline />
-            </span>
-            <p>Map</p>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/"
-            className="flex items-center gap-x-8 text-base text-white pr-6 rounded-full"
-          >
-            <span className="p-4 rounded-full bg-theme-dark-grey">
-              <BsTruck />
-            </span>
-            <p>Delivery</p>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/"
-            className="flex items-center gap-x-8 text-base text-white pr-6 rounded-full"
-          >
-            <span className="p-4 rounded-full bg-theme-dark-grey">
-              <BsGear />
-            </span>
-            <p>Setting</p>
-          </Link>
-        </li>*/}
       </ul>
 
       <Image
@@ -164,6 +97,22 @@ const Sidebar = () => {
         alt="delivery image"
         className="object-contain"
       />
+      <div className="flex flex-col gap-2">
+        <Image
+          src="/app-store.png"
+          width={175}
+          height={25}
+          alt="app store"
+          className="object-contain opacity-75"
+        />
+        <Image
+          src="/google-play.png"
+          width={175}
+          height={25}
+          alt="google play"
+          className="object-contain opacity-75"
+        />
+      </div>
     </section>
   );
 };

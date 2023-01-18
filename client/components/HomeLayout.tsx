@@ -43,24 +43,6 @@ const HomeLayout = () => {
               <>
                 {category.popular && (
                   <Category {...category} index={i} paddingBottom={false} />
-                  //  <div
-                  //    key={i}
-                  //    className="w-full col-span-1 bg-theme-dark-grey px-3 rounded-[40px] transition duration-750 hover:bg-theme-light-grey"
-                  //  >
-                  //    <Link
-                  //      href={`/category/${category.name}`}
-                  //      className="flex flex-col items-center justify-center"
-                  //    >
-                  //      <Image
-                  //        src="/category/cake.png"
-                  //        alt="category"
-                  //        width={75}
-                  //        height={75}
-                  //        className="py-2"
-                  //      />
-                  //      <p className="capitalize">{category.name}</p>
-                  //    </Link>
-                  //  </div>
                 )}
               </>
             )

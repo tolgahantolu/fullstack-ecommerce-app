@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import { GET_FOODS } from "../../graphql/query";
 import Food from "../../components/Food";
 import Loader from "../../components/Loader";
+import Head from "next/head";
 
 const CategoryDetails = () => {
   const { id } = useRouter().query;
@@ -14,6 +15,12 @@ const CategoryDetails = () => {
   if (loading) return <Loader />;
   return (
     <>
+      <Head>
+        <title>{`${id} - Stunning Food App | Tolgahan Tolu`}</title>
+        <meta name="description" content="Food App Shopping Single Food Page" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/png" href="/logo.png" />
+      </Head>
       <BackButton />
       <div className="mr-5">
         <h1 className="text-3xl font-medium capitalize">{id}</h1>

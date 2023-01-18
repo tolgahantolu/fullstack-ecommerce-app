@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -41,6 +42,12 @@ const Cart = () => {
 
   return (
     <>
+      <Head>
+        <title>Shopping Cart - Stunning Food App | Tolgahan Tolu</title>
+        <meta name="description" content="Food App Shopping Cart Page" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/png" href="/logo.png" />
+      </Head>
       {checkUser && (
         <div className="flex gap-x-8">
           <div className="flex-1">
