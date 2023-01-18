@@ -75,7 +75,7 @@ const Navbar = () => {
                     width={75}
                     height={75}
                     alt="cart product"
-                    className="object-cover object-center drop-shadow"
+                    className="object-cover object-center drop-shadow w-auto h-auto"
                   />
                   <div className="flex-2">
                     <h3 className="capitalize font-medium mb-1">

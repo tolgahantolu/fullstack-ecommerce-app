@@ -1,8 +1,6 @@
 import React, { Key } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../graphql/query";
-import Link from "next/link";
-import Image from "next/image";
 import BackButton from "./BackButton";
 import Category from "./Category";
 import Loader from "./Loader";
@@ -26,7 +24,7 @@ const CategoryLayout = () => {
             },
             i: Key
           ) => (
-            <Category {...category} index={i} paddingBottom={true} />
+            <Category key={i} {...category} index={i} paddingBottom={true} />
           )
         )}
       </div>

@@ -24,7 +24,7 @@ const Category: React.FC<{
           alt="category"
           width={75}
           height={75}
-          className="py-2"
+          className="py-2 w-auto h-auto"
         />
         <p className={`capitalize ${paddingBottom ? "pb-2" : "pb-0"}`}>
           {name}

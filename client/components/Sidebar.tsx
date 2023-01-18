@@ -49,7 +49,7 @@ const Sidebar = () => {
           width={80}
           height={80}
           alt="profile"
-          className="object-cover rounded-full object-top"
+          className="object-cover rounded-full object-top w-auto h-auto"
         />
 
         <h2 className="text-white break-all text-center px-3 font-medium">

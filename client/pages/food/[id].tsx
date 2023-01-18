@@ -123,7 +123,7 @@ const Product = () => {
             width={500}
             height={500}
             alt="product"
-            className="object-cover object-center drop-shadow"
+            className="object-cover object-center drop-shadow w-auto h-auto"
           />
         </div>
       </div>

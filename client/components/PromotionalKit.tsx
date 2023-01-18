@@ -54,7 +54,7 @@ const PromotionalKit: React.FC<{
           width={75}
           height={75}
           alt="product"
-          className="object-cover object-center drop-shadow"
+          className="object-cover object-center drop-shadow w-auto h-auto"
         />
         <div className="flex flex-col">
           <Link href={`/food/${id}`}>

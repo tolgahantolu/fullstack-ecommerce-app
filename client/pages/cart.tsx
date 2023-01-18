@@ -72,7 +72,7 @@ const Cart = () => {
                     width={75}
                     height={75}
                     alt="cart product"
-                    className="object-cover object-center drop-shadow"
+                    className="object-cover object-center drop-shadow w-auto h-auto"
                   />
                   <div className="flex-1 flex flex-col gap-1 items-start">
                     <h3 className="capitalize">{product.title}</h3>
@@ -176,7 +176,7 @@ const Cart = () => {
                     width={50}
                     height={50}
                     alt="profile"
-                    className="object-cover rounded-full object-top"
+                    className="object-cover rounded-full object-top w-auto h-auto"
                   />
                   <h2 className="text-sm break-all font-medium">
                     {checkEmail}

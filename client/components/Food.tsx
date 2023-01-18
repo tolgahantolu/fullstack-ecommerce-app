@@ -105,7 +105,7 @@ const Food: React.FC<{
           width={125}
           height={125}
           alt="product"
-          className="object-cover object-center drop-shadow"
+          className="object-cover object-center drop-shadow w-auto h-auto"
         />
       </div>
     </div>

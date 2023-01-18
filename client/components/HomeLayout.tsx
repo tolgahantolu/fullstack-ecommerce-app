@@ -42,7 +42,12 @@ const HomeLayout = () => {
             ) => (
               <>
                 {category.popular && (
-                  <Category {...category} index={i} paddingBottom={false} />
+                  <Category
+                    key={i}
+                    {...category}
+                    index={i}
+                    paddingBottom={false}
+                  />
                 )}
               </>
             )
@@ -114,7 +119,7 @@ const HomeLayout = () => {
                 },
                 i: Key
               ) => (
-                <Food {...food} index={i} />
+                <Food key={i} {...food} index={i} />
               )
             )}
           </div>
@@ -142,7 +147,9 @@ const HomeLayout = () => {
                 },
                 i: Key
               ) => (
-                <>{food.kit && <PromotionalKit {...food} index={i} />}</>
+                <>
+                  {food.kit && <PromotionalKit key={i} {...food} index={i} />}
+                </>
               )
             )}
           </div>
