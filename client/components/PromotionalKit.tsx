@@ -86,7 +86,7 @@ const PromotionalKit: React.FC<{
               className="flex items-center gap-x-2"
             >
               <input
-                type="text"
+                type="number"
                 className="border-none outline-none text-center text-xs w-14 h-6 px-4 bg-theme-dark-black rounded-full"
                 ref={amountInputRef}
               />

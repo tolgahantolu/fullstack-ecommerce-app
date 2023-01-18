@@ -91,7 +91,7 @@ const Product = () => {
               className="flex items-center gap-x-2"
             >
               <input
-                type="text"
+                type="number"
                 className="border-none outline-none text-center w-36 h-10 px-4 bg-theme-dark-grey rounded-xl"
                 ref={amountInputRef}
               />
