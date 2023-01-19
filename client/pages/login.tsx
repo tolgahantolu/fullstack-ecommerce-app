@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 import { LOGIN_USER } from "../graphql/mutation";
 import { authUser } from "../store/authSlice";
 
-const login = () => {
+const Login = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const userEmail = emailInputRef.current?.value;
   const dispatch = useDispatch();
@@ -110,4 +110,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

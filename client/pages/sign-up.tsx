@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../store/authSlice";
 import Head from "next/head";
 
-const signUp = () => {
+const SignUp = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const userEmail = emailInputRef.current?.value;
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
@@ -148,4 +148,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;
