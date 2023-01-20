@@ -8,7 +8,7 @@ import { store, persistor } from "../store";
 import { PersistGate } from "redux-persist/integration/react";
 
 const client = new ApolloClient({
-  uri: "https://nextjs-stunning-food-app.vercel.app/",
+  uri: "https://food-app-gclr.onrender.com",
   cache: new InMemoryCache(),
 });
 
