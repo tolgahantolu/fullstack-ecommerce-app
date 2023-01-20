@@ -36,6 +36,7 @@ const CategoryDetails = () => {
                 kit: Boolean;
                 category: String;
                 ingredients: Array<string>;
+                image: String;
               },
               i: Key
             ) => (
