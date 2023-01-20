@@ -14,7 +14,7 @@ const cartSlice = createSlice({
     addItemToCart(state, action) {
       state.counter = state.counter + action.payload.counter;
 
-      const { id, title, price } = action.payload;
+      const { id, title, price, image } = action.payload;
 
       const existingProduct = state.products.find(
         (product: { id: Object; title: String; price: Number }) =>
@@ -27,6 +27,7 @@ const cartSlice = createSlice({
           id: id,
           title: title,
           price: price,
+          image: image,
           totalPrice: price * action.payload.amount,
           quantity: 0 + action.payload.amount,
         });

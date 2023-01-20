@@ -10,6 +10,7 @@ export const GET_FOODS = gql`
       kit
       category
       ingredients
+      image
     }
   }
 `;
@@ -35,6 +36,7 @@ export const GET_FOOD = gql`
       kit
       category
       ingredients
+      image
     }
   }
 `;

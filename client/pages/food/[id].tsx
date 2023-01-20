@@ -44,6 +44,7 @@ const Product = () => {
         id: data?.getFood?.id,
         title: data?.getFood?.title,
         price: data?.getFood?.price,
+        image: data?.getFood?.image,
         counter: enteredAmountNumber,
         amount: enteredAmountNumber,
       })
@@ -119,7 +120,7 @@ const Product = () => {
             </div>
           </div>
           <Image
-            src="/food/salad2.png"
+            src={data?.getFood?.image}
             width={500}
             height={500}
             alt="product"

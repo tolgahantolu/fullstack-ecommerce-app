@@ -34,6 +34,7 @@ const Navbar = () => {
     kit: Boolean;
     category: String;
     ingredients: Array<string>;
+    image: String;
   }
 
   return (
@@ -71,7 +72,7 @@ const Navbar = () => {
                   onClick={() => setQuery("")}
                 >
                   <Image
-                    src="/food/salad2.png"
+                    src={food.image as string}
                     width={75}
                     height={75}
                     alt="cart product"

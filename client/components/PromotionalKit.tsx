@@ -12,8 +12,9 @@ const PromotionalKit: React.FC<{
   price: Number;
   kit: Boolean;
   ingredients: Array<string>;
+  image: String;
   index: Key;
-}> = ({ id, title, desc, price, kit, ingredients, index }) => {
+}> = ({ id, title, desc, price, kit, ingredients, index, image }) => {
   const dispatch = useDispatch();
   const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
   const amountInputRef = useRef<HTMLInputElement>(null);
@@ -40,6 +41,7 @@ const PromotionalKit: React.FC<{
         id,
         title,
         price,
+        image,
         counter: enteredAmountNumber,
         amount: enteredAmountNumber,
       })
@@ -50,7 +52,7 @@ const PromotionalKit: React.FC<{
     <div key={index} className="w-full bg-theme-dark-grey rounded-[30px]">
       <div className="flex items-center gap-x-1 min-h-[150px] min-w-full px-2">
         <Image
-          src="/food/pizzakit.png"
+          src={image as string}
           width={75}
           height={75}
           alt="product"

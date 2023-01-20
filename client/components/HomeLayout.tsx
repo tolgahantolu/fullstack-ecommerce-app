@@ -116,6 +116,7 @@ const HomeLayout = () => {
                   kit: Boolean;
                   category: String;
                   ingredients: Array<string>;
+                  image: String;
                 },
                 i: Key
               ) => (
@@ -144,6 +145,7 @@ const HomeLayout = () => {
                   price: Number;
                   kit: Boolean;
                   ingredients: Array<string>;
+                  image: String;
                 },
                 i: Key
               ) => (

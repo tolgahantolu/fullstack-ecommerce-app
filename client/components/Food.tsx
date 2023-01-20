@@ -13,8 +13,9 @@ const Food: React.FC<{
   kit: Boolean;
   category: String;
   ingredients: Array<string>;
+  image: String;
   index: Key;
-}> = ({ id, title, desc, price, kit, category, index, ingredients }) => {
+}> = ({ id, title, desc, price, kit, category, index, ingredients, image }) => {
   const amountInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
@@ -41,6 +42,7 @@ const Food: React.FC<{
         id,
         title,
         price,
+        image,
         counter: enteredAmountNumber,
         amount: enteredAmountNumber,
       })
@@ -51,8 +53,8 @@ const Food: React.FC<{
       key={index}
       className="col-span-1 w-full bg-theme-dark-grey rounded-[30px]"
     >
-      <div className="flex items-center gap-x-1 min-h-[180px] min-w-full pl-4 pr-2 py-2">
-        <div className="flex flex-col">
+      <div className="flex items-center justify-between gap-x-1 min-h-[180px] min-w-full pl-4 pr-2 py-2">
+        <div className="flex-1 flex flex-col">
           <Link href={`/food/${id}`}>
             <h2 className="capitalize text-lg mb-1 font-medium">{title}</h2>
             <div className="flex flex-row flex-wrap">
@@ -101,7 +103,7 @@ const Food: React.FC<{
           )}
         </div>
         <Image
-          src="/food/salad2.png"
+          src={image as string}
           width={125}
           height={125}
           alt="product"

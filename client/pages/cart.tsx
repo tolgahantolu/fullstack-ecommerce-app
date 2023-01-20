@@ -68,7 +68,7 @@ const Cart = () => {
                   className="bg-theme-light-grey p-3 rounded-[30px] flex items-center gap-3"
                 >
                   <Image
-                    src="/food/salad2.png"
+                    src={product.image}
                     width={75}
                     height={75}
                     alt="cart product"

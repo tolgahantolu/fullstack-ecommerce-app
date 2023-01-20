@@ -7,6 +7,7 @@ const typeDefs = `#graphql
 		kit: Boolean
 		category: String!
 		ingredients: [String]!
+		image: String!
 	}
 	
 	type Category {
