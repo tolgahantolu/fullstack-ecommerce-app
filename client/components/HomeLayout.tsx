@@ -72,7 +72,7 @@ const HomeLayout = () => {
             <p className="text-lg">the best discount in the world</p>
           </div>
           <Image
-            src="/food/discount.png"
+            src="/discount.png"
             width={200}
             height={70}
             alt="sushi roll"

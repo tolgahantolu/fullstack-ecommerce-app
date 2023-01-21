@@ -90,28 +90,33 @@ const Sidebar = () => {
         )}
       </ul>
 
-      <Image
-        src="/delivery.png"
-        width={175}
-        height={125}
-        alt="delivery image"
-        className="object-contain"
-      />
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col items-center gap-7">
         <Image
-          src="/app-store.png"
+          src="/delivery.png"
           width={175}
-          height={25}
-          alt="app store"
-          className="object-contain opacity-75"
+          height={125}
+          alt="delivery image"
+          className="object-contain"
         />
-        <Image
-          src="/google-play.png"
-          width={175}
-          height={25}
-          alt="google play"
-          className="object-contain opacity-75"
-        />
+        <div className="flex flex-row gap-2">
+          <Image
+            src="/app-store.png"
+            width={175}
+            height={25}
+            alt="app store"
+            className="object-contain opacity-75"
+          />
+        </div>
+
+        <small className="text-[#b2afaf] text-center text-xs leading-5">
+          This DEMO Project Created by{" "}
+          <Link
+            href="https://www.linkedin.com/in/tolgahant/"
+            className="capitalize text-theme-dark-orange font-medium underline"
+          >
+            Tolgahan Tolu
+          </Link>
+        </small>
       </div>
     </section>
   );
