@@ -51,10 +51,10 @@ const Food: React.FC<{
   return (
     <div
       key={index}
-      className="col-span-1 w-full bg-theme-dark-grey rounded-[30px]"
+      className="col-span-1 w-full bg-theme-dark-grey rounded-[30px] py-3"
     >
-      <div className="flex items-center justify-between gap-x-1 min-h-[180px] min-w-full pl-4 pr-2 py-2">
-        <div className="flex-1 flex flex-col">
+      <div className="flex items-center justify-between gap-x-1 min-w-full min-h-[145px] max-h-[145px] h-full pl-4 pr-2 py-2">
+        <div className="flex-1 flex flex-col h-full justify-between">
           <Link href={`/food/${id}`}>
             <h2 className="capitalize text-lg mb-1 font-medium">{title}</h2>
             <div className="flex flex-row flex-wrap">
@@ -77,7 +77,7 @@ const Food: React.FC<{
                   ))}
             </div>
           </Link>
-          <div className="mt-3 flex flex-row justify-between items-center">
+          <div className="mt-2 flex flex-row justify-between items-center">
             <p className="font-bold text-3xl leading-none">{`$${price}`}</p>
             <form
               onSubmit={handlerSubmit}

@@ -60,7 +60,7 @@ const Navbar = () => {
         </span>
 
         {query.length > 2 && (
-          <div className="search border border-theme-light-grey text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
+          <div className="search border border-theme-light-grey text-white absolute top-full left-1/2 -translate-x-1/2 mx-auto mt-1 z-10 w-[400px] max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
             {/* product */}
             {data?.getFoods
               ?.filter((food: Food) => food.title.toLowerCase().includes(query))

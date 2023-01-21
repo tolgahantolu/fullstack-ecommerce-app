@@ -109,7 +109,7 @@ const Sidebar = () => {
         </div>
 
         <small className="text-[#b2afaf] text-center text-xs leading-5">
-          This DEMO Project Created by{" "}
+          This DEMO Project was Created by{" "}
           <Link
             href="https://www.linkedin.com/in/tolgahant/"
             className="capitalize text-theme-dark-orange font-medium underline"
