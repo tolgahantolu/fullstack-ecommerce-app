@@ -10,17 +10,19 @@ import Loader from "../../components/Loader";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/cartSlice";
 import Head from "next/head";
+import { GetServerSideProps, NextPage } from "next";
+import { apolloClient } from "../../graphql/client";
 
-const Product = () => {
-  const { id } = useRouter().query;
+const Product: NextPage<{ data: Object | any }> = ({ data }) => {
+  //  const { id } = useRouter().query;
   const amountInputRef = useRef<HTMLInputElement>(null);
   const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
   const dispatch = useDispatch();
 
-  const { loading, error, data } = useQuery(GET_FOOD, {
-    variables: { foodId: id },
-    pollInterval: 500,
-  });
+  //  const { loading, error, data } = useQuery(GET_FOOD, {
+  //    variables: { foodId: id },
+  //    pollInterval: 500,
+  //  });
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,7 +53,7 @@ const Product = () => {
     );
   };
 
-  if (loading) return <Loader />;
+  //  if (loading) return <Loader />;
   return (
     <>
       <Head>
@@ -133,3 +135,18 @@ const Product = () => {
 };
 
 export default Product;
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const id: any = params?.id;
+  const client = apolloClient();
+  const { loading, error, data } = await client.query({
+    query: GET_FOOD,
+    variables: { foodId: id },
+  });
+
+  return {
+    props: {
+      data,
+    },
+  };
+};

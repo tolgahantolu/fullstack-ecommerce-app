@@ -6,14 +6,16 @@ import Layout from "../components/Layout";
 import { Provider } from "react-redux";
 import { store, persistor } from "../store";
 import { PersistGate } from "redux-persist/integration/react";
+import { apolloClient } from "../graphql/client";
 
-const client = new ApolloClient({
-  uri: process.env.BACKEND_API,
-  //  uri: "http://localhost:4000/",
-  cache: new InMemoryCache(),
-});
+//const client = new ApolloClient({
+//  uri: process.env.NEXT_PUBLIC_BACKEND_API,
+//  //  uri: "http://localhost:4000/",
+//  cache: new InMemoryCache(),
+//});
 
 export default function App({ Component, pageProps }: AppProps) {
+  const client = apolloClient();
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
