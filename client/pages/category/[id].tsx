@@ -8,17 +8,7 @@ import Loader from "../../components/Loader";
 import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { apolloClient } from "../../graphql/client";
-
-interface Food {
-  id: Object;
-  title: String;
-  desc: String;
-  price: Number;
-  kit: Boolean;
-  category: String;
-  ingredients: Array<string>;
-  image: String;
-}
+import { FoodInterface } from "../../typescript/interfaces";
 
 const CategoryDetails: NextPage<{ data: Object | any }> = ({ data }) => {
   const { id } = useRouter().query;
@@ -40,8 +30,8 @@ const CategoryDetails: NextPage<{ data: Object | any }> = ({ data }) => {
         <div className="grid grid-cols-3 gap-4 mt-5 pr-5">
           {/* product element */}
           {data?.getFoods
-            ?.filter((food: Food) => food.category === id)
-            .map((food: Food, i: Key) => (
+            ?.filter((food: FoodInterface) => food.category === id)
+            .map((food: FoodInterface, i: Key) => (
               <Food key={i} {...food} index={i} />
             ))}
         </div>

@@ -10,6 +10,7 @@ import { FiChevronRight } from "react-icons/fi";
 import { IoFilterSharp } from "react-icons/io5";
 import Category from "./Category";
 import Loader from "./Loader";
+import { CategoryInterface, FoodInterface } from "../typescript/interfaces";
 
 const HomeLayout: React.FC<{
   foodsData: Object | any;
@@ -34,15 +35,7 @@ const HomeLayout: React.FC<{
       <div className="w-full col-span-4">
         <div className="w-full h-full grid grid-cols-6 gap-4">
           {categoriesData?.getCategories?.map(
-            (
-              category: {
-                id: Object;
-                name: String;
-                image: String;
-                popular: Boolean;
-              },
-              i: Key
-            ) => (
+            (category: CategoryInterface, i: Key) => (
               <>
                 {category.popular && (
                   <Category
@@ -109,23 +102,9 @@ const HomeLayout: React.FC<{
         <div className="w-full h-[540px] mt-5 overflow-y-auto">
           <div className="grid grid-cols-2 gap-4 pr-5">
             {/* product element */}
-            {foodsData?.getFoods?.map(
-              (
-                food: {
-                  id: Object;
-                  title: String;
-                  desc: String;
-                  price: Number;
-                  kit: Boolean;
-                  category: String;
-                  ingredients: Array<string>;
-                  image: String;
-                },
-                i: Key
-              ) => (
-                <Food key={i} {...food} index={i} />
-              )
-            )}
+            {foodsData?.getFoods?.map((food: FoodInterface, i: Key) => (
+              <Food key={i} {...food} index={i} />
+            ))}
           </div>
         </div>
       </div>
@@ -139,24 +118,9 @@ const HomeLayout: React.FC<{
         <div className="w-full h-[540px] overflow-y-auto mt-5">
           <div className="flex flex-col gap-y-4 pr-5">
             {/* product */}
-            {foodsData?.getFoods?.map(
-              (
-                food: {
-                  id: Object;
-                  title: String;
-                  desc: String;
-                  price: Number;
-                  kit: Boolean;
-                  ingredients: Array<string>;
-                  image: String;
-                },
-                i: Key
-              ) => (
-                <>
-                  {food.kit && <PromotionalKit key={i} {...food} index={i} />}
-                </>
-              )
-            )}
+            {foodsData?.getFoods?.map((food: FoodInterface, i: Key) => (
+              <>{food.kit && <PromotionalKit key={i} {...food} index={i} />}</>
+            ))}
           </div>
         </div>
       </div>

@@ -11,10 +11,11 @@ const PromotionalKit: React.FC<{
   desc: String;
   price: Number;
   kit: Boolean;
+  category: String;
   ingredients: Array<string>;
   image: String;
   index: Key;
-}> = ({ id, title, desc, price, kit, ingredients, index, image }) => {
+}> = ({ id, title, desc, price, kit, category, ingredients, index, image }) => {
   const dispatch = useDispatch();
   const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
   const amountInputRef = useRef<HTMLInputElement>(null);
@@ -58,15 +59,15 @@ const PromotionalKit: React.FC<{
           alt="product"
           className="object-cover object-center drop-shadow w-auto h-auto"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col pl-1">
           <Link href={`/food/${id}`}>
-            <h2 className="capitalize text-lg mb-1">{title}</h2>
+            <h2 className="capitalize mb-1 font-semibold">{title}</h2>
             <div className="flex flex-row flex-wrap">
               {ingredients.length > 7
                 ? ingredients.slice(0, 7).map((el, i) => (
                     <p
                       key={i}
-                      className="text-theme-dark-grey2 text-sm font-medium leading-2"
+                      className="text-theme-dark-grey2 text-xs font-medium leading-2"
                     >
                       {el}
                     </p>
@@ -74,7 +75,7 @@ const PromotionalKit: React.FC<{
                 : ingredients.map((el, i) => (
                     <p
                       key={i}
-                      className="text-theme-dark-grey2 text-sm font-medium leading-2"
+                      className="text-theme-dark-grey2 text-xs font-medium leading-2"
                     >
                       {el}
                     </p>
@@ -82,7 +83,7 @@ const PromotionalKit: React.FC<{
             </div>
           </Link>
           <div className="mt-3 flex flex-row justify-between">
-            <p className="font-bold text-3xl leading-none">{`$${price}`}</p>
+            <p className="font-bold text-[26px] leading-none">{`$${price}`}</p>
             <form
               onSubmit={handlerSubmit}
               className="flex items-center gap-x-2"

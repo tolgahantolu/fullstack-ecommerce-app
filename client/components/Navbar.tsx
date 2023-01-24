@@ -14,8 +14,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { GET_FOODS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
-import { GetServerSideProps } from "next";
-import { apolloClient } from "../graphql/client";
+import { FoodInterface } from "../typescript/interfaces";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -27,17 +26,6 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(authUser({ user: false, email: null }));
   };
-
-  interface Food {
-    id: Object;
-    title: String;
-    desc: String;
-    price: Number;
-    kit: Boolean;
-    category: String;
-    ingredients: Array<string>;
-    image: String;
-  }
 
   return (
     <nav className="w-full h-20 flex items-center">
@@ -65,8 +53,10 @@ const Navbar = () => {
           <div className="search border border-theme-light-grey text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-between gap-3 py-3">
             {/* product */}
             {data?.getFoods
-              ?.filter((food: Food) => food.title.toLowerCase().includes(query))
-              .map((food: Food, i: Key) => (
+              ?.filter((food: FoodInterface) =>
+                food.title.toLowerCase().includes(query)
+              )
+              .map((food: FoodInterface, i: Key) => (
                 <Link
                   key={i}
                   href={`/food/${food.id}`}
@@ -97,7 +87,7 @@ const Navbar = () => {
                         : food.ingredients.map((el, i) => (
                             <p
                               key={i}
-                              className="text-theme-dark-grey2 text-sm font-medium leading-2"
+                              className="text-theme-dark-grey2 text-[13px] font-medium leading-2"
                             >
                               {el}
                             </p>
