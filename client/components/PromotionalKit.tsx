@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { FormEvent, Key, useRef, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch } from "react-redux";
+import useAddItemToCart from "../hooks/useAddItemToCart";
 import { addItemToCart } from "../store/cartSlice";
 
 const PromotionalKit: React.FC<{
@@ -16,42 +17,13 @@ const PromotionalKit: React.FC<{
   image: String;
   index: Key;
 }> = ({ id, title, desc, price, kit, category, ingredients, index, image }) => {
-  const dispatch = useDispatch();
-  const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
   const amountInputRef = useRef<HTMLInputElement>(null);
-
-  const handlerSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    const enteredAmount: String | any = amountInputRef.current?.value;
-    const enteredAmountNumber: Number = +enteredAmount;
-
-    if (
-      enteredAmount?.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 5
-    ) {
-      setAmountIsValid(false);
-      return;
-    } else {
-      if (amountIsValid !== true) setAmountIsValid(true);
-    }
-
-    dispatch(
-      addItemToCart({
-        id,
-        title,
-        price,
-        image,
-        counter: enteredAmountNumber,
-        amount: enteredAmountNumber,
-      })
-    );
-  };
+  const { handlerAddItemToCart: handlerSubmit, amountIsValid } =
+    useAddItemToCart(id, title, price, image, amountInputRef);
 
   return (
-    <div key={index} className="w-full bg-theme-dark-grey rounded-[30px]">
-      <div className="flex items-center gap-x-1 min-h-[150px] min-w-full px-2">
+    <div key={index} className="w-full bg-theme-dark-grey rounded-[30px] py-1">
+      <div className="flex items-center justify-between gap-x-1 min-w-full min-h-[120px] max-h-[120px] h-full px-2">
         <Image
           src={image as string}
           width={75}
@@ -59,7 +31,7 @@ const PromotionalKit: React.FC<{
           alt="product"
           className="object-cover object-center drop-shadow w-auto h-auto"
         />
-        <div className="flex flex-col pl-1">
+        <div className="flex flex-col px-[6px]">
           <Link href={`/food/${id}`}>
             <h2 className="capitalize mb-1 font-semibold">{title}</h2>
             <div className="flex flex-row flex-wrap">
@@ -85,7 +57,7 @@ const PromotionalKit: React.FC<{
           <div className="mt-3 flex flex-row justify-between">
             <p className="font-bold text-[26px] leading-none">{`$${price}`}</p>
             <form
-              onSubmit={handlerSubmit}
+              onSubmit={(e: FormEvent) => handlerSubmit(e)}
               className="flex items-center gap-x-2"
             >
               <input
