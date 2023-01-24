@@ -14,6 +14,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { GET_FOODS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
+import { GetServerSideProps } from "next";
+import { apolloClient } from "../graphql/client";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -60,7 +62,7 @@ const Navbar = () => {
         </span>
 
         {query.length > 2 && (
-          <div className="search border border-theme-light-grey text-white absolute top-full left-1/2 -translate-x-1/2 mx-auto mt-1 z-10 w-[400px] max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-center gap-3 py-3">
+          <div className="search border border-theme-light-grey text-white absolute top-full mt-1 z-10 w-full max-h-[380px] overflow-y-auto rounded-2xl bg-theme-dark-black flex flex-col justify-between gap-3 py-3">
             {/* product */}
             {data?.getFoods
               ?.filter((food: Food) => food.title.toLowerCase().includes(query))
@@ -73,13 +75,13 @@ const Navbar = () => {
                 >
                   <Image
                     src={food.image as string}
-                    width={75}
-                    height={75}
+                    width={50}
+                    height={50}
                     alt="cart product"
                     className="object-cover object-center drop-shadow w-auto h-auto"
                   />
                   <div className="flex-2">
-                    <h3 className="capitalize font-medium mb-1">
+                    <h3 className="capitalize font-medium mb-1 text-[15px]">
                       {food.title}
                     </h3>
                     <div className="flex flex-row flex-wrap">
@@ -87,7 +89,7 @@ const Navbar = () => {
                         ? food.ingredients.slice(0, 5).map((el, i) => (
                             <p
                               key={i}
-                              className="text-theme-dark-grey2 text-sm font-medium leading-2"
+                              className="text-theme-dark-grey2 text-[13px] font-medium leading-2"
                             >
                               {el}
                             </p>
@@ -103,7 +105,7 @@ const Navbar = () => {
                     </div>
                   </div>
 
-                  <h2 className="flex-1 text-3xl font-bold leading-none">
+                  <h2 className="flex-1 text-[28px] font-bold leading-none text-end">
                     {`$${food.price}`}
                   </h2>
                 </Link>
