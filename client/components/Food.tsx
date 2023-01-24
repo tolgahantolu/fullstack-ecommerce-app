@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { FormEvent, Key, useRef, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch } from "react-redux";
+import useAddItemToCart from "../hooks/useAddItemToCart";
 import { addItemToCart } from "../store/cartSlice";
 
 const Food: React.FC<{
@@ -17,37 +18,9 @@ const Food: React.FC<{
   index: Key;
 }> = ({ id, title, desc, price, kit, category, index, ingredients, image }) => {
   const amountInputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
-  const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
+  const { handlerAddItemToCart: handlerSubmit, amountIsValid } =
+    useAddItemToCart(id, title, price, image, amountInputRef);
 
-  const handlerSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    const enteredAmount: String | any = amountInputRef.current?.value;
-    const enteredAmountNumber: Number = +enteredAmount;
-
-    if (
-      enteredAmount?.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 5
-    ) {
-      setAmountIsValid(false);
-      return;
-    } else {
-      if (amountIsValid !== true) setAmountIsValid(true);
-    }
-
-    dispatch(
-      addItemToCart({
-        id,
-        title,
-        price,
-        image,
-        counter: enteredAmountNumber,
-        amount: enteredAmountNumber,
-      })
-    );
-  };
   return (
     <div
       key={index}
@@ -80,7 +53,7 @@ const Food: React.FC<{
           <div className="mt-2 flex flex-row justify-between items-center">
             <p className="font-bold text-3xl leading-none">{`$${price}`}</p>
             <form
-              onSubmit={handlerSubmit}
+              onSubmit={(e: FormEvent) => handlerSubmit(e)}
               className="flex items-center gap-x-2"
             >
               <input

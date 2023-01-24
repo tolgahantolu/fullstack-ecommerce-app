@@ -12,46 +12,19 @@ import { addItemToCart } from "../../store/cartSlice";
 import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { apolloClient } from "../../graphql/client";
+import useAddItemToCart from "../../hooks/useAddItemToCart";
 
 const Product: NextPage<{ data: Object | any }> = ({ data }) => {
   //  const { id } = useRouter().query;
   const amountInputRef = useRef<HTMLInputElement>(null);
-  const [amountIsValid, setAmountIsValid] = useState<Boolean>(true);
-  const dispatch = useDispatch();
-
-  //  const { loading, error, data } = useQuery(GET_FOOD, {
-  //    variables: { foodId: id },
-  //    pollInterval: 500,
-  //  });
-
-  const handlerSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    const enteredAmount: String | any = amountInputRef.current?.value;
-    const enteredAmountNumber: Number = +enteredAmount;
-
-    if (
-      enteredAmount?.trim().length === 0 ||
-      enteredAmountNumber < 1 ||
-      enteredAmountNumber > 5
-    ) {
-      setAmountIsValid(false);
-      return;
-    } else {
-      if (amountIsValid !== true) setAmountIsValid(true);
-    }
-
-    dispatch(
-      addItemToCart({
-        id: data?.getFood?.id,
-        title: data?.getFood?.title,
-        price: data?.getFood?.price,
-        image: data?.getFood?.image,
-        counter: enteredAmountNumber,
-        amount: enteredAmountNumber,
-      })
+  const { handlerAddItemToCart: handlerSubmit, amountIsValid } =
+    useAddItemToCart(
+      data?.getFood?.id,
+      data?.getFood?.title,
+      data?.getFood?.price,
+      data?.getFood?.image,
+      amountInputRef
     );
-  };
 
   //  if (loading) return <Loader />;
   return (
@@ -99,7 +72,7 @@ const Product: NextPage<{ data: Object | any }> = ({ data }) => {
 
             <div>
               <form
-                onSubmit={handlerSubmit}
+                onSubmit={(e: FormEvent) => handlerSubmit(e)}
                 className="flex items-center gap-x-2"
               >
                 <input
