@@ -29,7 +29,12 @@ const Food: React.FC<{
       <div className="flex items-center justify-between gap-x-3 min-w-full min-h-[145px] max-h-[145px] h-full pl-4 pr-2 py-2">
         <div className="flex-1 flex flex-col h-full justify-between">
           <Link href={`/food/${id}`}>
-            <h2 className="capitalize text-lg mb-1 font-medium">{title}</h2>
+            <h2
+              data-testid="food-title"
+              className="capitalize text-lg mb-1 font-medium"
+            >
+              {title}
+            </h2>
             <div className="flex flex-row flex-wrap">
               {ingredients.length > 7
                 ? ingredients.slice(0, 7).map((el, i) => (

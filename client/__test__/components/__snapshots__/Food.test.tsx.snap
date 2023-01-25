@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Food Component render food image correctly 1`] = `"https://firebasestorage.googleapis.com/v0/b/nextjs-food-app-29e49.appspot.com/o/fpizza2.png?alt=media&token=1edfef55-6fd1-4cff-9621-85910e25663c"`;
