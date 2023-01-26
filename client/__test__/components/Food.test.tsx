@@ -1,8 +1,6 @@
-import React from "react";
+import { screen, waitFor } from "@testing-library/react";
+import { render } from "./render";
 import Food from "@/components/Food";
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "../../store";
 
 const DUMMY_FOOD = {
   id: "63aa9a4b54282fbb206130a2",
@@ -20,21 +18,20 @@ const DUMMY_FOOD = {
 
 describe("Food Component", () => {
   beforeAll(() => {
-    render(
-      <Provider store={store}>
-        <Food {...DUMMY_FOOD} />
-      </Provider>
-    );
+    render(<Food {...DUMMY_FOOD} />, {
+      mocks: {
+        Query: {
+          getFood: () => ({ ...DUMMY_FOOD }),
+        },
+      },
+    });
   });
 
-  test("render food data title and price correctly", () => {
-    expect(screen.getByTestId("food-title")).toHaveTextContent(
-      "veggie pizza kit"
-    );
-    expect(DUMMY_FOOD.price).toBeGreaterThan(0);
+  it("should display the food title", async () => {
+    await screen.findByText(/veggie pizza kit/i);
   });
 
-  test("render food image correctly", () => {
+  it("render food image correctly", () => {
     expect(DUMMY_FOOD.image).toMatchSnapshot();
   });
 });
