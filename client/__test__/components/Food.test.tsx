@@ -1,5 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
-import { render } from "./render";
+import { render } from "../render";
 import Food from "@/components/Food";
 
 const DUMMY_FOOD = {
@@ -33,5 +33,22 @@ describe("Food Component", () => {
 
   it("render food image correctly", () => {
     expect(DUMMY_FOOD.image).toMatchSnapshot();
+  });
+
+  it("should call the food query with the correct variables", async () => {
+    const foodQuerySpy = jest.fn();
+    foodQuerySpy(DUMMY_FOOD);
+
+    render(<Food {...DUMMY_FOOD} />, {
+      mocks: {
+        Query: {
+          getFood: foodQuerySpy,
+        },
+      },
+    });
+
+    await waitFor(() => expect(foodQuerySpy).toHaveBeenCalled());
+
+    expect(foodQuerySpy.mock.calls[0][0].price).toEqual(32);
   });
 });
