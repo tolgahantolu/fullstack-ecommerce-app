@@ -7,15 +7,15 @@ import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import { LOGIN_USER } from "../graphql/mutation";
+import { RootState } from "../store";
 import { authUser } from "../store/authSlice";
 
 const Login = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const userEmail = emailInputRef.current?.value;
   const dispatch = useDispatch();
-  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const checkUser = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
-  console.log(router);
 
   useEffect(() => {
     if (checkUser) {

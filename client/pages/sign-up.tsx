@@ -11,11 +11,12 @@ import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../store/authSlice";
 import Head from "next/head";
+import { RootState } from "../store";
 
 const SignUp = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const userEmail = emailInputRef.current?.value;
-  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const checkUser = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
 

@@ -5,15 +5,14 @@ import { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../components/BackButton";
+import { RootState } from "../store";
 import { addItemToCart, removeItemFromCart } from "../store/cartSlice";
 
 const Cart = () => {
-  const checkUser = useSelector((state: any | any[]) => state.auth.user);
-  const checkEmail = useSelector((state: any | any[]) => state.auth.email);
-  const productItems = useSelector((state: any | any[]) => state.cart.products);
-  const totalAmount = useSelector(
-    (state: any | any[]) => state.cart.totalAmount
-  );
+  const checkUser = useSelector((state: RootState) => state.auth.user);
+  const checkEmail = useSelector((state: RootState) => state.auth.email);
+  const productItems = useSelector((state: RootState) => state.cart.products);
+  const totalAmount = useSelector((state: RootState) => state.cart.totalAmount);
   const dispatch = useDispatch();
   const router = useRouter();
 

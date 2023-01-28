@@ -7,6 +7,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { Key } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const Sidebar = () => {
   const MENU_LIST = [
@@ -38,8 +39,8 @@ const Sidebar = () => {
   ];
   const pathname = useRouter().pathname;
 
-  const checkUser = useSelector((state: any | any[]) => state.auth.user);
-  const checkEmail = useSelector((state: any | any[]) => state.auth.email);
+  const checkUser = useSelector((state: RootState) => state.auth.user);
+  const checkEmail = useSelector((state: RootState) => state.auth.email);
 
   return (
     <section className="w-[200px] min-w-[200px] h-full flex flex-col justify-start items-center gap-y-10 pb-10">

@@ -15,12 +15,13 @@ import Image from "next/image";
 import { GET_FOODS } from "../graphql/query";
 import { useQuery } from "@apollo/client";
 import { FoodInterface } from "../typescript/interfaces";
+import { RootState } from "../store";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const { data, loading, error } = useQuery(GET_FOODS);
-  const cartCounter = useSelector((state: any | any[]) => state.cart.counter);
-  const checkUser = useSelector((state: any | any[]) => state.auth.user);
+  const cartCounter = useSelector((state: RootState) => state.cart.counter);
+  const checkUser = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
