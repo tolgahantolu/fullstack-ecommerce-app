@@ -51,7 +51,10 @@ const Login = () => {
       <div className="w-full h-full flex justify-center items-center">
         <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
           <h1 className="text-3xl text-center font-bold capitalize">login</h1>
-          <form className="w-[350px] flex flex-col gap-10 mt-8">
+          <form
+            data-testid="form-login"
+            className="w-[350px] flex flex-col gap-10 mt-8"
+          >
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="email"
