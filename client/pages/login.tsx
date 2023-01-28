@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { MdAlternateEmail, MdLockOutline } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
@@ -15,10 +15,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const checkUser = useSelector((state: any | any[]) => state.auth.user);
   const router = useRouter();
+  console.log(router);
 
-  if (checkUser) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (checkUser) {
+      router.push("/");
+    }
+  }, [checkUser, router]);
 
   const [user, setUser] = useState({
     email: "",
@@ -48,7 +51,7 @@ const Login = () => {
         <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
 
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full mt-10 flex justify-center">
         <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
           <h1 className="text-3xl text-center font-bold capitalize">login</h1>
           <form

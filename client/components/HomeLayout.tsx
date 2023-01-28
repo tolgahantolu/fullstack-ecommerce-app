@@ -16,20 +16,6 @@ const HomeLayout: React.FC<{
   foodsData: Object | any;
   categoriesData: Object | any;
 }> = ({ foodsData, categoriesData }) => {
-  //  const {
-  //    loading: foodsLoading,
-  //    error: foodsError,
-  //    data: foodsData,
-  //  } = useQuery(GET_FOODS);
-  //  const {
-  //    loading: categoriesLoading,
-  //    error: categoriesError,
-  //    data: categoriesData,
-  //  } = useQuery(GET_CATEGORIES);
-
-  //  if (categoriesLoading) return <Loader />;
-  //  if (categoriesError) return <p>Error : {categoriesError.message}</p>;
-
   return (
     <section className="grid grid-cols-6 grid-rows-6 gap-x-10">
       <div className="w-full col-span-4">

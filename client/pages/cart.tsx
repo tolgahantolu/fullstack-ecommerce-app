@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../components/BackButton";
@@ -16,9 +17,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  if (!checkUser) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    if (!checkUser) {
+      router.push("/login");
+    }
+  }, [checkUser, router]);
 
   const handlerAddItem = (id: String, price: Number): any => {
     dispatch(

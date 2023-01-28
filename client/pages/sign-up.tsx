@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { REGISTER_USER } from "../graphql/mutation";
 
@@ -19,9 +19,11 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  if (checkUser) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (checkUser) {
+      router.push("/");
+    }
+  }, [checkUser, router]);
 
   const [user, setUser] = useState({
     name: "",
@@ -52,7 +54,7 @@ const SignUp = () => {
         <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
 
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full mt-10 flex justify-center">
         <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
           <h1 className="text-3xl text-center font-bold capitalize">sign up</h1>
           <form className="w-[350px] flex flex-col gap-10 mt-8">

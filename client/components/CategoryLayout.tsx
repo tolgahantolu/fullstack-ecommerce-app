@@ -9,11 +9,6 @@ import { CategoryInterface } from "../typescript/interfaces";
 const CategoryLayout: React.FC<{
   categoriesData: Object | any;
 }> = ({ categoriesData }) => {
-  //  const { loading, error, data } = useQuery(GET_CATEGORIES);
-  //
-  //  if (loading) return <Loader />;
-  //  if (error) return <p>Error : {error.message}</p>;
-
   return (
     <>
       <BackButton />
