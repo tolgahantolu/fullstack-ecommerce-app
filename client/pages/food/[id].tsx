@@ -1,21 +1,17 @@
-import React, { FormEvent, Key, useRef, useState } from "react";
+import React, { FormEvent, Key, useRef } from "react";
 import Image from "next/image";
 import BackButton from "../../components/BackButton";
-import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
 import { GET_FOOD } from "../../graphql/query";
-import { FiPlus } from "react-icons/fi";
 import { BsFillStarFill } from "react-icons/bs";
-import Loader from "../../components/Loader";
-import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../store/cartSlice";
 import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { apolloClient } from "../../graphql/client";
 import useAddItemToCart from "../../hooks/useAddItemToCart";
+import FoodForm from "@/components/FoodForm";
 
-const Product: NextPage<{ data: Object | any }> = ({ data }) => {
-  //  const { id } = useRouter().query;
+const Product: NextPage<{
+  data: Object | any;
+}> = ({ data }) => {
   const amountInputRef = useRef<HTMLInputElement>(null);
   const { handlerAddItemToCart: handlerSubmit, amountIsValid } =
     useAddItemToCart(
@@ -26,7 +22,6 @@ const Product: NextPage<{ data: Object | any }> = ({ data }) => {
       amountInputRef
     );
 
-  //  if (loading) return <Loader />;
   return (
     <>
       <Head>
@@ -71,22 +66,11 @@ const Product: NextPage<{ data: Object | any }> = ({ data }) => {
             <p className="text-5xl font-bold">${data?.getFood?.price}</p>
 
             <div>
-              <form
+              <FoodForm
                 onSubmit={(e: FormEvent) => handlerSubmit(e)}
-                className="flex items-center gap-x-2"
-              >
-                <input
-                  type="number"
-                  className="border-none outline-none text-center w-36 h-10 px-4 bg-theme-dark-grey rounded-xl"
-                  ref={amountInputRef}
-                />
-                <button
-                  type="submit"
-                  className="border-none outline-none bg-theme-green text-2xl p-2 rounded-xl font-bold"
-                >
-                  <FiPlus />
-                </button>
-              </form>
+                big={true}
+                ref={amountInputRef}
+              />
               {!amountIsValid && (
                 <p className="mt-4 text-left font-medium text-theme-dark-orange">
                   Please enter a amount (1-5).
@@ -112,7 +96,7 @@ export default Product;
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id: any = params?.id;
   const client = apolloClient();
-  const { loading, error, data } = await client.query({
+  const { data } = await client.query({
     query: GET_FOOD,
     variables: { foodId: id },
   });

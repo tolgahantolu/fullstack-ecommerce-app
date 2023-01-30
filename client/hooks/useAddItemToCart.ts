@@ -7,8 +7,6 @@ const useAddItemToCart = (
   title: String,
   price: Number,
   image: String,
-  //  counter: Number,
-  //  amount: Number,
   amountInputRef: Object | any
 ) => {
   const dispatch = useDispatch();

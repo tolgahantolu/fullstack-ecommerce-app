@@ -1,10 +1,8 @@
 import React, { Key } from "react";
 import { useRouter } from "next/router";
 import BackButton from "../../components/BackButton";
-import { useQuery } from "@apollo/client";
 import { GET_FOODS } from "../../graphql/query";
 import Food from "../../components/Food";
-import Loader from "../../components/Loader";
 import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { apolloClient } from "../../graphql/client";
@@ -12,10 +10,6 @@ import { FoodInterface } from "../../typescript/interfaces";
 
 const CategoryDetails: NextPage<{ data: Object | any }> = ({ data }) => {
   const { id } = useRouter().query;
-
-  //  const { loading, error, data } = useQuery(GET_FOODS);
-
-  //  if (loading) return <Loader />;
   return (
     <>
       <Head>
@@ -44,7 +38,7 @@ export default CategoryDetails;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const client = apolloClient();
-  const { loading, error, data } = await client.query({ query: GET_FOODS });
+  const { data } = await client.query({ query: GET_FOODS });
 
   return {
     props: {

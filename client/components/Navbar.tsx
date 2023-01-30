@@ -1,4 +1,4 @@
-import { Key, useRef } from "react";
+import { Key } from "react";
 import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { BiShoppingBag } from "react-icons/bi";
@@ -19,7 +19,7 @@ import { RootState } from "../store";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
-  const { data, loading, error } = useQuery(GET_FOODS);
+  const { data } = useQuery(GET_FOODS);
   const cartCounter = useSelector((state: RootState) => state.cart.counter);
   const checkUser = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();

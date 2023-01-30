@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { FormEvent, Key, useRef, useState } from "react";
-import { FiPlus } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import React, { FormEvent, Key, useRef } from "react";
 import useAddItemToCart from "../hooks/useAddItemToCart";
-import { addItemToCart } from "../store/cartSlice";
+import FoodForm from "./FoodForm";
 
 const PromotionalKit: React.FC<{
   id: Object;
@@ -56,22 +54,11 @@ const PromotionalKit: React.FC<{
           </Link>
           <div className="mt-3 flex flex-row justify-between">
             <p className="font-bold text-[26px] leading-none">{`$${price}`}</p>
-            <form
+            <FoodForm
               onSubmit={(e: FormEvent) => handlerSubmit(e)}
-              className="flex items-center gap-x-2"
-            >
-              <input
-                type="number"
-                className="border-none outline-none text-center text-xs w-14 h-6 px-4 bg-theme-dark-black rounded-full"
-                ref={amountInputRef}
-              />
-              <button
-                type="submit"
-                className="border-none outline-none bg-theme-green rounded-xl text-2xl p-1 font-bold"
-              >
-                <FiPlus />
-              </button>
-            </form>
+              big={false}
+              ref={amountInputRef}
+            />
           </div>
           {!amountIsValid && (
             <p className="mt-1 text-left text-xs font-medium text-theme-dark-orange">

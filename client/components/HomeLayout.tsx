@@ -1,15 +1,12 @@
 import React, { Key } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES, GET_FOODS } from "../graphql/query";
 import Food from "./Food";
 import PromotionalKit from "./PromotionalKit";
 
 import { FiChevronRight } from "react-icons/fi";
 import { IoFilterSharp } from "react-icons/io5";
 import Category from "./Category";
-import Loader from "./Loader";
 import { CategoryInterface, FoodInterface } from "../typescript/interfaces";
 
 const HomeLayout: React.FC<{

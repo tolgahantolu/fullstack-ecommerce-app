@@ -22,7 +22,7 @@ const Cart = () => {
     }
   }, [checkUser, router]);
 
-  const handlerAddItem = (id: String, price: Number): any => {
+  const handlerAddItem = (id: String, price: Number) => {
     dispatch(
       addItemToCart({
         id,
@@ -32,7 +32,7 @@ const Cart = () => {
     );
   };
 
-  const handlerRemoveItem = (id: String, price: Number): any => {
+  const handlerRemoveItem = (id: String, price: Number) => {
     dispatch(
       removeItemFromCart({
         id,

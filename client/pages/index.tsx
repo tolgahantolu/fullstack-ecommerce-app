@@ -3,7 +3,6 @@ import { Inter } from "@next/font/google";
 import HomeLayout from "../components/HomeLayout";
 import { GetServerSideProps } from "next";
 import type { NextPage } from "next";
-import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES, GET_FOODS } from "../graphql/query";
 import { apolloClient } from "../graphql/client";
 
@@ -31,16 +30,10 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = apolloClient();
-  const {
-    loading: foodsLoading,
-    error: foodsError,
-    data: foodsData,
-  } = await client.query({ query: GET_FOODS });
-  const {
-    loading: categoriesLoading,
-    error: categoriesError,
-    data: categoriesData,
-  } = await client.query({ query: GET_CATEGORIES });
+  const { data: foodsData } = await client.query({ query: GET_FOODS });
+  const { data: categoriesData } = await client.query({
+    query: GET_CATEGORIES,
+  });
 
   return {
     props: {

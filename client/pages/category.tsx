@@ -28,7 +28,7 @@ export default Category;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = apolloClient();
-  const { loading, error, data } = await client.query({
+  const { data } = await client.query({
     query: GET_CATEGORIES,
   });
 

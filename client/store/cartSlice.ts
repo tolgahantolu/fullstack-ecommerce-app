@@ -20,7 +20,6 @@ const cartSlice = createSlice({
         (product: { id: Object; title: String; price: Number }) =>
           product.id === id
       );
-      console.log(current(state.products));
 
       if (!existingProduct) {
         state.products.push({
@@ -58,8 +57,6 @@ const cartSlice = createSlice({
           (acc: any, totalPriceProduct: any) => acc + totalPriceProduct,
           0
         );
-
-      console.log(current(state.products));
     },
     removeItemFromCart(state, action) {
       state.counter = state.counter - action.payload.counter;
@@ -70,7 +67,6 @@ const cartSlice = createSlice({
         (product: { id: Object; title: String; price: Number }) =>
           product.id === id
       );
-      console.log(current(existingProduct));
 
       if (existingProduct.quantity === 1) {
         state.products = state.products.filter(

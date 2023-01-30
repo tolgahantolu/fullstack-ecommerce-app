@@ -11,8 +11,6 @@ const nextConfig = {
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
   ) => {
     console.log(webpack.version);
-    console.log(defaultLoaders.babel);
-    console.log(dev);
     //config.module.rules.push({
     //	test: /\.(ts|tsx|js|jsx)/,
     //	use: [

@@ -1,9 +1,6 @@
 import React, { Key } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES } from "../graphql/query";
 import BackButton from "./BackButton";
 import Category from "./Category";
-import Loader from "./Loader";
 import { CategoryInterface } from "../typescript/interfaces";
 
 const CategoryLayout: React.FC<{
