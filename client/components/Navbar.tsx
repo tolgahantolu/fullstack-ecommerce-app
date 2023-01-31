@@ -76,7 +76,19 @@ const Navbar = () => {
                       {food.title}
                     </h3>
                     <div className="flex flex-row flex-wrap">
-                      {food.ingredients.length > 5
+                      {food.ingredients.length > 5 ? (
+                        <p className="text-theme-dark-grey2 text-[13px] font-medium leading-2">
+                          {food.ingredients
+                            .slice(0, 5)
+                            .join(", ")
+                            .concat("...")}
+                        </p>
+                      ) : (
+                        <p className="text-theme-dark-grey2 text-[13px] font-medium leading-2">
+                          {food.ingredients.join(", ")}
+                        </p>
+                      )}
+                      {/*{food.ingredients.length > 5
                         ? food.ingredients.slice(0, 5).map((el, i) => (
                             <p
                               key={i}
@@ -92,7 +104,7 @@ const Navbar = () => {
                             >
                               {el}
                             </p>
-                          ))}
+                          ))}*/}
                     </div>
                   </div>
 

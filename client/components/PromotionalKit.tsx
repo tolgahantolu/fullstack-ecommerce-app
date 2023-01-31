@@ -33,23 +33,15 @@ const PromotionalKit: React.FC<{
           <Link href={`/food/${id}`}>
             <h2 className="capitalize mb-1 font-semibold">{title}</h2>
             <div className="flex flex-row flex-wrap">
-              {ingredients.length > 7
-                ? ingredients.slice(0, 7).map((el, i) => (
-                    <p
-                      key={i}
-                      className="text-theme-dark-grey2 text-xs font-medium leading-2"
-                    >
-                      {el}
-                    </p>
-                  ))
-                : ingredients.map((el, i) => (
-                    <p
-                      key={i}
-                      className="text-theme-dark-grey2 text-xs font-medium leading-2"
-                    >
-                      {el}
-                    </p>
-                  ))}
+              {ingredients.length > 6 ? (
+                <p className="text-theme-dark-grey2 text-xs font-medium leading-2">
+                  {ingredients.slice(0, 6).join(", ").concat("...")}
+                </p>
+              ) : (
+                <p className="text-theme-dark-grey2 text-xs font-medium leading-2">
+                  {ingredients.join(", ")}
+                </p>
+              )}
             </div>
           </Link>
           <div className="mt-3 flex flex-row justify-between">

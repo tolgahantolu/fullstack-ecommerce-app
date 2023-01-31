@@ -34,23 +34,15 @@ const Food: React.FC<{
               {title}
             </h2>
             <div className="flex flex-row flex-wrap">
-              {ingredients.length > 7
-                ? ingredients.slice(0, 7).map((el, i) => (
-                    <p
-                      key={i}
-                      className="text-theme-dark-grey2 text-sm font-medium leading-2"
-                    >
-                      {el}
-                    </p>
-                  ))
-                : ingredients.map((el, i) => (
-                    <p
-                      key={i}
-                      className="text-theme-dark-grey2 text-sm font-medium leading-2"
-                    >
-                      {el}
-                    </p>
-                  ))}
+              {ingredients.length > 7 ? (
+                <p className="text-theme-dark-grey2 text-sm font-medium leading-2">
+                  {ingredients.slice(0, 7).join(", ").concat("...")}
+                </p>
+              ) : (
+                <p className="text-theme-dark-grey2 text-sm font-medium leading-2">
+                  {ingredients.join(", ")}
+                </p>
+              )}
             </div>
           </Link>
           <div className="mt-2 flex flex-row justify-between items-center">

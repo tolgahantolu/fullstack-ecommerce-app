@@ -58,9 +58,7 @@ const Product: NextPage<{
             <div>
               <p className="">Ingredients</p>
               <div className="flex flex-row flex-wrap">
-                {data?.getFood?.ingredients.map((el: Array<string>, i: Key) => (
-                  <p key={i}>{el}</p>
-                ))}
+                <p>{data?.getFood?.ingredients.join(", ")}</p>
               </div>
             </div>
             <p className="text-5xl font-bold">${data?.getFood?.price}</p>
