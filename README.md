@@ -24,5 +24,16 @@ A project I did to improve myself inspired by a UI design I saw on Instagram. My
 | tailwindcss - `^3.2.4` |
 
 ## What the app does?
+* User registration and user login/logout.
+* Fetching category and food data via MongoDB with Apollographql.
+* Displaying products belonging to that category on category pages.
+* Search for products with the input in the navbar (with at least 3 character).
+* Adding products to the shopping cart from different pages.
+* Updating the products added to the shopping cart on the cart.
 
-## Features I Plan to Add
+## Features in the below can be add to the app.
+* Selecting the ingredients when adding items to the shopping cart.
+* User can be like products and to display liked products to the user.
+* Best selling products can be display to the user.
+* A page can be developed where the user can change their information.
+* Payment can be taken on the shopping cart.
