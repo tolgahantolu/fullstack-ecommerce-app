@@ -88,23 +88,6 @@ const Navbar = () => {
                           {food.ingredients.join(", ")}
                         </p>
                       )}
-                      {/*{food.ingredients.length > 5
-                        ? food.ingredients.slice(0, 5).map((el, i) => (
-                            <p
-                              key={i}
-                              className="text-theme-dark-grey2 text-[13px] font-medium leading-2"
-                            >
-                              {el}
-                            </p>
-                          ))
-                        : food.ingredients.map((el, i) => (
-                            <p
-                              key={i}
-                              className="text-theme-dark-grey2 text-[13px] font-medium leading-2"
-                            >
-                              {el}
-                            </p>
-                          ))}*/}
                     </div>
                   </div>
 
@@ -132,7 +115,9 @@ const Navbar = () => {
         </Link>
         <Link
           href="/login"
-          className="bg-theme-dark-grey text-white text-xl p-3 rounded-full"
+          className={`${
+            checkUser ? "bg-theme-light-orange" : "bg-theme-dark-grey"
+          } text-white text-xl p-3 rounded-full`}
         >
           {checkUser ? (
             <IoIosLogOut onClick={handleLogout} />
