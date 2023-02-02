@@ -1,37 +1,25 @@
-import { Key } from "react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import Food from "../../components/Food";
-
-interface FoodFC {
-  id: Object;
-  title: String;
-  desc: String;
-  price: Number;
-  kit: Boolean;
-  category: String;
-  ingredients: Array<string>;
-  image: String;
-  index: Key;
-}
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
   title: "Components/Food",
   component: Food,
-};
+} as ComponentMeta<typeof Food>;
 
-const Template = (args: FoodFC) => (
-  <Provider store={store}>
-    <div className="w-full h-[540px] mt-5 overflow-y-auto text-white">
-      <div className="grid grid-cols-3 gap-4 pr-5">
+const Template: ComponentStory<typeof Food> = (args) => (
+  <div className="w-full h-[540px] mt-5 overflow-y-auto text-white">
+    <div className="grid grid-cols-3 gap-4 pr-5">
+      <Provider store={store}>
         <Food {...args} />
-      </div>
+      </Provider>
     </div>
-  </Provider>
+  </div>
 );
 
-export const FoodStory = Template.bind({});
-FoodStory.args = {
+export const FoodCard = Template.bind({});
+FoodCard.args = {
   id: Object("63aa9a4b54282fbb206130a2"),
   title: "Veggie Pizza",
   desc: "Lorem ipsum dolor sit amet.",
