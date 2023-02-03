@@ -12,6 +12,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook-addon-next-router",
     {
       /**
        * Fix Storybook issue with PostCSS@8
@@ -60,29 +61,3 @@ module.exports = {
     return config;
   },
 };
-
-//module.exports = {
-//  stories: [
-//    "../stories/**/*.stories.mdx",
-//    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
-//  ],
-//  addons: [
-//    "@storybook/addon-links",
-//    "@storybook/addon-essentials",
-//    "@storybook/addon-interactions",
-//  ],
-//  framework: "@storybook/react",
-//  core: {
-//    builder: "@storybook/builder-webpack5",
-//  },
-//  typescript: {
-//    check: false,
-//    checkOptions: {},
-//    reactDocgen: "react-docgen-typescript",
-//    reactDocgenTypescriptOptions: {
-//      shouldExtractLiteralValuesFromEnum: true,
-//      propFilter: (prop) =>
-//        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
-//    },
-//  },
-//};
