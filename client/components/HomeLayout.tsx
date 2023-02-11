@@ -21,12 +21,7 @@ const HomeLayout: React.FC<{
             (category: CategoryInterface, i: Key) => (
               <>
                 {category.popular && (
-                  <Category
-                    key={i}
-                    {...category}
-                    index={i}
-                    paddingBottom={false}
-                  />
+                  <Category key={i} {...category} index={i} />
                 )}
               </>
             )

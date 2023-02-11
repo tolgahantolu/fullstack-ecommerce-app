@@ -10,7 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </header>
       <main className="flex flex-row max-w-[1380px] mx-auto">
         <Sidebar />
-        <div className="py-10 pl-10 w-full bg-theme-dark-black text-white rounded-tl-[70px] max-w-[1380px] mx-auto">
+        <div className="py-10 pl-10 w-full bg-theme-dark-black text-white max-w-[1380px] mx-auto">
           {children}
         </div>
       </main>

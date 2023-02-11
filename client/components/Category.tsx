@@ -7,9 +7,8 @@ const Category: React.FC<{
   name: String;
   popular: Boolean;
   image: String;
-  paddingBottom: Boolean;
   index: Key;
-}> = ({ id, name, popular, image, paddingBottom, index }) => {
+}> = ({ id, name, popular, image, index }) => {
   return (
     <div
       key={index}
@@ -26,9 +25,7 @@ const Category: React.FC<{
           height={75}
           className="py-2 w-auto h-auto"
         />
-        <p className={`capitalize ${paddingBottom ? "pb-2" : "pb-0"}`}>
-          {name}
-        </p>
+        <p className="capitalize pb-2">{name}</p>
       </Link>
     </div>
   );
