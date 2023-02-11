@@ -1,4 +1,4 @@
-# Nextjs Food App 🍲
+# Nextjs Food E-Commerce Theme 🍲
 
 ![nextjs-stunning-food-app](https://user-images.githubusercontent.com/68701178/215937215-b32a2f2b-4731-4e59-978f-481ed5f3163b.png)
 Demo: https://nextjs-stunning-food-app.vercel.app/
