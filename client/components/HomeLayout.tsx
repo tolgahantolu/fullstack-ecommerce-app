@@ -15,7 +15,7 @@ const HomeLayout: React.FC<{
 }> = ({ foodsData, categoriesData }) => {
   return (
     <section className="grid grid-cols-6 grid-rows-6 gap-x-10">
-      <div className="w-full col-span-4">
+      <div className="hidden md:block w-full col-span-4 bg-color-red-800">
         <div className="w-full h-full grid grid-cols-6 gap-4">
           {categoriesData?.getCategories?.map(
             (category: CategoryInterface, i: Key) => (
@@ -30,7 +30,7 @@ const HomeLayout: React.FC<{
       </div>
 
       {/* discount */}
-      <div className="h-full col-span-2 mr-10 bg-theme-green rounded-[40px]">
+      <div className="hidden md:block h-full col-span-2 mr-10 bg-theme-green rounded-[40px]">
         <div className="h-full flex justify-start items-center relative">
           <div className="pl-5">
             <Link
@@ -55,12 +55,12 @@ const HomeLayout: React.FC<{
         </div>
       </div>
 
-      <div className="w-full  mt-16 col-span-4 row-span-5">
+      <div className="w-full mt-0 md:mt-16 col-span-6 mmd:col-span-4 row-span-5 pr-10 mmd:pr-0">
         {/* heading */}
         <div className="flex flex-row justify-between items-center">
-          <h1 className="capitalize text-2xl flex items-center gap-x-4">
+          <h1 className="capitalize text-xl sm:text-2xl flex items-center gap-x-4">
             all items
-            <button className="border-none outline-none text-lg bg-theme-dark-grey p-2 rounded-full cursor-pointer">
+            <button className="border-none outline-none text-base sm:text-lg bg-theme-dark-grey p-2 rounded-full cursor-pointer">
               <IoFilterSharp />
             </button>
           </h1>
@@ -70,7 +70,7 @@ const HomeLayout: React.FC<{
             className="green-view w-28 h-8 flex items-center rounded-full border-2 border-white relative"
           >
             <p className="capitalize text-sm pl-3">view all</p>
-            <span className="text-2xl text-center p-[6px] rounded-full bg-theme-green absolute -right-[2px]">
+            <span className="text-xl sm:text-2xl text-center p-[6px] rounded-full bg-theme-green absolute -right-[2px]">
               <FiChevronRight />
             </span>
           </Link>
@@ -78,7 +78,7 @@ const HomeLayout: React.FC<{
 
         {/* !!! products !!! */}
         <div className="w-full h-[540px] mt-5 overflow-y-auto">
-          <div className="grid grid-cols-2 gap-4 pr-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pr-5">
             {/* product element */}
             {foodsData?.getFoods?.map((food: FoodInterface, i: Key) => (
               <Food key={i} {...food} index={i} />
@@ -86,9 +86,9 @@ const HomeLayout: React.FC<{
           </div>
         </div>
       </div>
-      <div className="mt-16 col-span-2 row-span-5 mr-10">
+      <div className="hidden mmd:block mt-0 md:mt-16 col-span-2 row-span-5 mr-10">
         {/* heading */}
-        <h1 className="capitalize text-2xl flex items-center gap-x-4">
+        <h1 className="capitalize text-xl sm:text-2xl flex items-center gap-x-4">
           promotional kits
         </h1>
 

@@ -29,24 +29,23 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full h-20 flex items-center">
-      <form className="flex justify-start ml-80 relative">
+    <nav className="w-full h-16 xs:h-20 flex flex-row items-center">
+      <form className="flex justify-start ml-5 xs:ml-10 mmd:ml-80 relative">
         <input
           type="text"
           value={query}
           placeholder="Search..."
-          className="bg-theme-dark-black w-[350px] h-10 text-sm rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2"
+          className="bg-theme-dark-black w-[220px] xs:w-[350px] h-8 xs:h-10 text-sm rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2 text-sm xs:text-base"
           onChange={(e) => setQuery(e.target.value)}
         />
-        <span className="text-white absolute top-1/2 -translate-y-1/2 right-3">
+        <span className="text-white absolute top-1/2 -translate-y-1/2 right-3 text-lg xs:text-2xl">
           {query ? (
             <IoMdClose
-              size={25}
               className="cursor-pointer"
               onClick={() => setQuery("")}
             />
           ) : (
-            <BsSearch size={20} />
+            <BsSearch />
           )}
         </span>
 
@@ -71,45 +70,47 @@ const Navbar = () => {
                     alt="cart product"
                     className="object-cover object-center drop-shadow w-auto h-auto"
                   />
-                  <div className="flex-2">
-                    <h3 className="capitalize font-medium mb-1 text-[15px]">
-                      {food.title}
-                    </h3>
-                    <div className="flex flex-row flex-wrap">
-                      {food.ingredients.length > 5 ? (
-                        <p className="text-theme-dark-grey2 text-[13px] font-medium leading-2">
-                          {food.ingredients
-                            .slice(0, 5)
-                            .join(", ")
-                            .concat("...")}
-                        </p>
-                      ) : (
-                        <p className="text-theme-dark-grey2 text-[13px] font-medium leading-2">
-                          {food.ingredients.join(", ")}
-                        </p>
-                      )}
+                  <div className="flex flex-col xs:flex-row items-start xs:items-center justify-center gap-y-2">
+                    <div className="flex-2">
+                      <h3 className="capitalize font-medium mb-1 text-xs xs:text-[15px]">
+                        {food.title}
+                      </h3>
+                      <div className="flex flex-row flex-wrap">
+                        {food.ingredients.length > 5 ? (
+                          <p className="text-theme-dark-grey2 text-[10px] xs:text-[13px] font-medium leading-2">
+                            {food.ingredients
+                              .slice(0, 5)
+                              .join(", ")
+                              .concat("...")}
+                          </p>
+                        ) : (
+                          <p className="text-theme-dark-grey2 text-[10px] xs:text-[13px] font-medium leading-2">
+                            {food.ingredients.join(", ")}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <h2 className="flex-1 text-[28px] font-bold leading-none text-end">
-                    {`$${food.price}`}
-                  </h2>
+                    <h2 className="flex-1 text-2xl xs:text-[28px] font-bold leading-none text-end">
+                      {`$${food.price}`}
+                    </h2>
+                  </div>
                 </Link>
               ))}
           </div>
         )}
       </form>
 
-      <div className="flex-1 flex justify-end gap-x-2 mr-10">
-        <button className="bg-theme-dark-grey text-white text-xl p-3 rounded-full">
+      <div className="flex-1 flex justify-end gap-x-2 mr-5 xs:mr-10">
+        <button className="hidden xs:block bg-theme-dark-grey text-white text-xl p-3 rounded-full">
           <IoMdNotificationsOutline />
         </button>
         <Link
           href="/cart"
-          className="bg-theme-dark-grey text-white text-xl p-3 rounded-full relative"
+          className="ml-2 xs:ml-0 bg-theme-dark-grey text-white text-lg xs:text-xl p-2 xs:p-3 rounded-full relative"
         >
           <BiShoppingBag />
-          <span className="flex justify-center items-center font-medium text-sm w-6 h-6 rounded-full bg-theme-light-orange absolute -bottom-2 -right-1">
+          <span className="flex justify-center items-center font-medium text-xs xs:text-sm w-5 h-5 xs:w-6 xs:h-6 rounded-full bg-theme-light-orange absolute -bottom-2 -right-1">
             {cartCounter}
           </span>
         </Link>
@@ -117,7 +118,7 @@ const Navbar = () => {
           href="/login"
           className={`${
             checkUser ? "bg-theme-light-orange" : "bg-theme-dark-grey"
-          } text-white text-xl p-3 rounded-full`}
+          } text-white text-lg xs:text-xl p-2 xs:p-3 rounded-full`}
         >
           {checkUser ? (
             <IoIosLogOut onClick={handleLogout} />

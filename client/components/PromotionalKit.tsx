@@ -24,10 +24,10 @@ const PromotionalKit: React.FC<{
       <div className="flex items-center justify-between gap-x-1 min-w-full min-h-[120px] max-h-[120px] h-full px-2">
         <Image
           src={image as string}
-          width={75}
-          height={75}
+          width={90}
+          height={90}
           alt="product"
-          className="object-cover object-center drop-shadow w-auto h-auto"
+          className="object-cover object-center drop-shadow"
         />
         <div className="flex flex-col px-[6px]">
           <Link href={`/food/${id}`}>
