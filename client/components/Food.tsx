@@ -24,7 +24,7 @@ const Food: React.FC<{
       key={index}
       className="col-span-1 w-full bg-theme-dark-grey rounded-[30px] py-3"
     >
-      <div className="flex flex-col-reverse xs:flex-row items-center justify-start xs:justify-between gap-3 min-w-full xs:min-h-[145px] xs:max-h-[145px] min-h-[240px] max-h-[240px] h-full pl-4 pr-2 py-2">
+      <div className="flex flex-col-reverse xs:flex-row items-center justify-start xs:justify-between gap-3 min-w-full xs:min-h-[160px] xs:max-h-[160px] min-h-[240px] max-h-[240px] h-full pl-4 pr-2 py-2">
         <div className="flex-1 flex flex-col h-full justify-between w-full">
           <Link href={`/food/${id}`}>
             <h2

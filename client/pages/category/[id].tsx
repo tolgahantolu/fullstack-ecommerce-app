@@ -21,7 +21,7 @@ const CategoryDetails: NextPage<{ data: Object | any }> = ({ data }) => {
       <BackButton />
       <div className="mr-5">
         <h1 className="text-3xl font-medium capitalize">{id}</h1>
-        <div className="grid grid-cols-3 gap-4 mt-5 pr-5">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-4 mt-5 pr-5">
           {/* product element */}
           {data?.getFoods
             ?.filter((food: FoodInterface) => food.category === id)
