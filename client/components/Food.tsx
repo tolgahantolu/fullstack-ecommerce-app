@@ -24,29 +24,29 @@ const Food: React.FC<{
       key={index}
       className="col-span-1 w-full bg-theme-dark-grey rounded-[30px] py-3"
     >
-      <div className="flex items-center justify-between gap-x-3 min-w-full min-h-[145px] max-h-[145px] h-full pl-4 pr-2 py-2">
-        <div className="flex-1 flex flex-col h-full justify-between">
+      <div className="flex flex-col-reverse xs:flex-row items-center justify-start xs:justify-between gap-3 min-w-full xs:min-h-[145px] xs:max-h-[145px] min-h-[240px] max-h-[240px] h-full pl-4 pr-2 py-2">
+        <div className="flex-1 flex flex-col h-full justify-between w-full">
           <Link href={`/food/${id}`}>
             <h2
               data-testid="food-title"
-              className="capitalize text-lg mb-1 font-medium"
+              className="capitalize text-base xs:text-lg mb-1 font-medium"
             >
               {title}
             </h2>
             <div className="flex flex-row flex-wrap">
               {ingredients.length > 7 ? (
-                <p className="text-theme-dark-grey2 text-sm font-medium leading-2">
+                <p className="text-theme-dark-grey2 text-xs xs:text-sm font-medium leading-2">
                   {ingredients.slice(0, 7).join(", ").concat("...")}
                 </p>
               ) : (
-                <p className="text-theme-dark-grey2 text-sm font-medium leading-2">
+                <p className="text-theme-dark-grey2 text-xs xs:text-sm font-medium leading-2">
                   {ingredients.join(", ")}
                 </p>
               )}
             </div>
           </Link>
           <div className="mt-2 flex flex-row justify-between items-center">
-            <p className="font-bold text-3xl leading-none">{`$${price}`}</p>
+            <p className="font-bold text-xl xs:text-2xl sm:text-3xl leading-none">{`$${price}`}</p>
             <FoodForm
               onSubmit={(e: FormEvent) => handlerSubmit(e)}
               big={false}
@@ -54,18 +54,31 @@ const Food: React.FC<{
             />
           </div>
           {!amountIsValid && (
-            <p className="mt-4 text-left text-xs font-medium text-theme-dark-orange">
+            <p className="mt-4 text-left text-[10px] sm:text-xs font-medium text-theme-dark-orange">
               Please enter a amount (1-5).
             </p>
           )}
         </div>
-        <Image
-          src={image as string}
-          width={115}
-          height={115}
-          alt="product"
-          className="object-cover object-center drop-shadow"
-        />
+        <div className="flex-1">
+          {/*<Image
+            src={image as string}
+            //  width={115}
+            //  height={115}
+            fill
+            sizes="(min-width: 320px) 75px,
+              (min-width: 768px) 100px,
+              115px"
+            alt="product"
+            className="object-cover object-center drop-shadow"
+          />*/}
+          <Image
+            src={image as string}
+            width={115}
+            height={115}
+            alt="product"
+            className="object-cover object-center drop-shadow"
+          />
+        </div>
       </div>
     </div>
   );
