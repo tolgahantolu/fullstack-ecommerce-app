@@ -60,17 +60,6 @@ const Food: React.FC<{
           )}
         </div>
         <div className="flex-1">
-          {/*<Image
-            src={image as string}
-            //  width={115}
-            //  height={115}
-            fill
-            sizes="(min-width: 320px) 75px,
-              (min-width: 768px) 100px,
-              115px"
-            alt="product"
-            className="object-cover object-center drop-shadow"
-          />*/}
           <Image
             src={image as string}
             width={115}
