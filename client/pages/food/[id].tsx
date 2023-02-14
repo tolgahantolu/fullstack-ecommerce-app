@@ -25,43 +25,47 @@ const Product: NextPage<{
   return (
     <>
       <Head>
-        <title>{`${data?.getFood?.title} - Stunning Food App | Tolgahan Tolu`}</title>
+        <title>{`${data?.getFood?.title.toUpperCase()} - Stunning Food App | Tolgahan Tolu`}</title>
         <meta name="description" content="Food App Shopping Single Food Page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
 
-      <div className="">
+      <div>
         <BackButton />
 
-        <div className="flex justify-between items-center gap-x-20">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-20 mr-10 lg:mr-0">
           <div className="flex flex-col gap-y-5">
-            <h1 className="text-6xl font-medium capitalize">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-medium capitalize">
               {data?.getFood?.title}
             </h1>
             <div>
-              <div className="flex flex-row gap-x-10">
+              <div className="flex flex-row gap-x-5 text-xs xs:text-base">
                 <p className="flex items-center gap-x-2">
                   <span> Rating </span>{" "}
                   <span className="text-theme-light-orange">
                     <BsFillStarFill />
                   </span>{" "}
-                  4,5/5
+                  4.5/5
                 </p>
                 <p>
                   Category:{" "}
                   <span className="capitalize">{data?.getFood?.category}</span>
                 </p>
               </div>
-              <p>{data?.getFood?.desc}</p>
+              <p className="text-sm xs:text-base">{data?.getFood?.desc}</p>
             </div>
             <div>
-              <p className="">Ingredients</p>
+              <p className="text-base xs:text-lg">Ingredients</p>
               <div className="flex flex-row flex-wrap">
-                <p>{data?.getFood?.ingredients.join(", ")}</p>
+                <p className="text-sm xs:text-base">
+                  {data?.getFood?.ingredients.join(", ")}
+                </p>
               </div>
             </div>
-            <p className="text-5xl font-bold">${data?.getFood?.price}</p>
+            <p className="text-4xl xs:text-5xl font-bold">
+              ${data?.getFood?.price}
+            </p>
 
             <div>
               <FoodForm

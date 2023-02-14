@@ -9,11 +9,13 @@ import { apolloClient } from "../../graphql/client";
 import { FoodInterface } from "../../typescript/interfaces";
 
 const CategoryDetails: NextPage<{ data: Object | any }> = ({ data }) => {
-  const { id } = useRouter().query;
+  const { id }: any = useRouter().query;
   return (
     <>
       <Head>
-        <title>{`${id} - Stunning Food App | Tolgahan Tolu`}</title>
+        <title>{`${id
+          .toString()
+          .toUpperCase()} - Stunning Food App | Tolgahan Tolu`}</title>
         <meta name="description" content="Food App Shopping Single Food Page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/logo.png" />
