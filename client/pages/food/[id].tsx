@@ -34,7 +34,7 @@ const Product: NextPage<{
       <div>
         <BackButton />
 
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-20 mr-10 lg:mr-0">
+        <div className="flex flex-col mmd:flex-row justify-between items-center gap-20 pr-10">
           <div className="flex flex-col gap-y-5">
             <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-medium capitalize">
               {data?.getFood?.title}

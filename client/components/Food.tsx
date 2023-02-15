@@ -59,7 +59,7 @@ const Food: React.FC<{
             </p>
           )}
         </div>
-        <div className="flex-1">
+        <div className="">
           <Image
             src={image as string}
             width={115}

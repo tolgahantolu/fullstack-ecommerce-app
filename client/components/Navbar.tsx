@@ -35,8 +35,8 @@ const Navbar = () => {
           type="text"
           value={query}
           placeholder="Search..."
-          className="bg-theme-dark-black w-[220px] xs:w-[350px] h-8 xs:h-10 text-sm rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2 text-sm xs:text-base"
-          onChange={(e) => setQuery(e.target.value)}
+          className="bg-theme-dark-black w-[220px] xs:w-[350px] h-8 xs:h-10 rounded-full text-theme-light-grey pl-6 pr-10 py-2 outline-none placeholder:italic placeholder:text-theme-light-grey placeholder-pl-2 text-sm xs:text-base"
+          onChange={(e) => setQuery(e.target.value.toLowerCase())}
         />
         <span className="text-white absolute top-1/2 -translate-y-1/2 right-3 text-lg xs:text-2xl">
           {query ? (

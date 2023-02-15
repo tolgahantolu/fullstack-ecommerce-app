@@ -56,8 +56,8 @@ const Sidebar = () => {
         {sidebar ? <IoCloseSharp /> : <HiMenuAlt1 />}
       </button>
       <div
-        className={`z-50 absolute -translate-x-[250px] w-[200px] min-w-[200px] h-full flex flex-col justify-start items-center gap-y-10 pb-10 bg-theme-dark-grey2 ${
-          sidebar && "static translate-x-[0]"
+        className={`z-50 opacity-0 pointer-events-none absolute -translate-x-[250px] w-[200px] min-w-[200px] h-full pb-10 bg-theme-dark-grey2 flex flex-col justify-start items-center gap-y-10 ${
+          sidebar && "static translate-x-[0] opacity-100 pointer-events-auto"
         }`}
       >
         <div className="w-full flex flex-col items-center gap-y-1 justify-center">
