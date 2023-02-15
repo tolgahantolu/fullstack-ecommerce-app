@@ -51,12 +51,12 @@ const Login = () => {
         <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
 
-      <div className="w-full mt-10 flex justify-center">
-        <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-8 px-16">
+      <div className="w-full mt-10 flex justify-center pr-10 xs:pr-0">
+        <div className="max-w-[400px] flex flex-col items-center rounded-3xl text-theme-dark-black bg-white py-6 xs:py-8 px-10 xs:px-16">
           <h1 className="text-3xl text-center font-bold capitalize">login</h1>
           <form
             data-testid="form-login"
-            className="w-[350px] flex flex-col gap-10 mt-8"
+            className="w-[250px] xs:w-[350px] flex flex-col gap-10 mt-8"
           >
             <div className="flex flex-col gap-1">
               <label
