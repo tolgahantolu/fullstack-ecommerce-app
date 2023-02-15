@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { Key, useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../components/BackButton";
@@ -52,7 +52,7 @@ const Cart = () => {
       </Head>
       {checkUser && (
         <div className="flex gap-x-8">
-          <div className="flex-1">
+          <div className="flex-1 pr-10 mmd:pr-0">
             <h1 className="text-3xl capitalize font-medium">Shopping Cart</h1>
             <div className="mt-5 flex flex-col gap-y-5 border-b-2 border-theme-dark-grey pb-10 overflow-y-auto h-[540px] pr-5">
               {/* cart product */}
@@ -64,13 +64,13 @@ const Cart = () => {
                   <BackButton />
                 </div>
               )}
-              {productItems.map((product: any | any[]) => (
+              {productItems.map((product: any) => (
                 <div
-                  key={product.id}
-                  className="bg-theme-light-grey p-3 rounded-[30px] flex items-center gap-3"
+                  key={product.id as Key}
+                  className="bg-theme-light-grey p-3 rounded-[30px] flex flex-col xs:flex-row xs:items-center gap-3"
                 >
                   <Image
-                    src={product.image}
+                    src={product.image as string}
                     width={75}
                     height={75}
                     alt="cart product"
@@ -118,7 +118,7 @@ const Cart = () => {
 
             {/* cart summary */}
             <div className="mt-3 flex flex-row justify-between items-center">
-              <p className="flex items-center gap-x-2">
+              <p className="hidden xs:flex items-center gap-x-2">
                 Promo Code:
                 <span className="bg-theme-light-black px-2 py-[2px] rounded-full">
                   xxx-xxx
@@ -134,7 +134,7 @@ const Cart = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="flex-1 bg-[#0c0c0c] rounded-tl-[50px] pr-10 pt-10">
+          <div className="hidden mmd:block flex-1 bg-[#0c0c0c] rounded-tl-[50px] pr-10 pt-10">
             <div className="pl-10">
               <h1 className="text-3xl capitalize font-medium">Cart Details</h1>
 
