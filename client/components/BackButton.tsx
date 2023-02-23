@@ -12,7 +12,7 @@ const BackButton = () => {
       <span>
         <HiOutlineChevronLeft />
       </span>
-      return back
+      go back
     </button>
   );
 };
