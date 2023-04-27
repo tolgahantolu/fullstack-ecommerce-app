@@ -3,7 +3,7 @@
 ![nextjs-stunning-food-app](https://user-images.githubusercontent.com/68701178/215937215-b32a2f2b-4731-4e59-978f-481ed5f3163b.png)
 Demo: https://fullstack-ecommerce-app.vercel.app/
 
-A project I did to improve myself inspired by a UI design I saw on Instagram. My goal in doing this project was how to progress, develop and deploy both a frontend and backend project together. I also believe that I developed myself more in TypeScript in this project.
+A project I did to improve myself inspired by a UI design that I saw on Instagram. My goal in doing this project was how to progress, develop and deploy both a frontend and backend project together. I also believe that I improved myself more in TypeScript in this project.
 
 ## Technologies and Their Versions Utilized
 
